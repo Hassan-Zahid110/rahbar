@@ -1,0 +1,12 @@
+{
+  "recall_at_3": 1.0,
+  "recall_at_5": 1.0,
+  "citation_validity": 1.0,
+  "abstention_correctness": 1.0,
+  "recall_at_5_by_type": {
+    "exact": 1.0,
+    "injection": 1.0,
+    "ordinary": 1.0,
+    "version": 1.0
+  }
+}
