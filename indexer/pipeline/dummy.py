@@ -58,4 +58,7 @@ def write_dummy_index(settings: IndexerSettings, client: Any) -> int:
         embeddings=[fake_vector(c.text) for c in DUMMY_CHUNKS],
         metadatas=[c.metadata() for c in DUMMY_CHUNKS],
     )
+    from .store import invalidate_semantic_cache
+
+    invalidate_semantic_cache(settings)
     return int(collection.count())
