@@ -1,0 +1,46 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: rahbar
+
+resources:
+  - ../../base
+
+images:
+  - name: rahbar-api
+    newName: rahbar-api
+    newTag: ci
+  - name: rahbar-indexer
+    newName: rahbar-indexer
+    newTag: ci
+  - name: rahbar-ui
+    newName: rahbar-ui
+    newTag: ci
+
+patches:
+  - target:
+      kind: ConfigMap
+      name: rahbar-config
+    patch: |-
+      - op: replace
+        path: /data/EMBED_MODEL
+        value: "hash-384"
+      - op: replace
+        path: /data/LLM_PROVIDER
+        value: "stub"
+      - op: replace
+        path: /data/RELEVANCE_FLOOR
+        value: "0.22"
+  - target:
+      kind: Job
+      name: indexer
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/initContainers
+        value: []
+      - op: replace
+        path: /spec/template/spec/volumes/0
+        value:
+          name: corpus-data
+          configMap:
+            name: fixture-corpus
