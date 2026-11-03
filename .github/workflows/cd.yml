@@ -1,0 +1,126 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test & Validate Before Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r api/requirements-dev.txt -r indexer/requirements-dev.txt
+      - name: Lint and typecheck
+        run: |
+          ruff check api indexer eval corpus
+          cd api && mypy app
+          cd ../indexer && mypy pipeline
+      - name: Run unit tests with coverage
+        run: |
+          cd api && RETRIEVER=stub LLM_PROVIDER=stub pytest --cov=app --cov-fail-under=60 -q
+          cd ../indexer && pytest -q
+
+  build-push:
+    name: Build & Push SHA-Tagged Images to Docker Hub
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push api image by commit SHA
+        uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rahbar-api:${{ github.sha }}
+      - name: Build and push indexer image by commit SHA
+        uses: docker/build-push-action@v6
+        with:
+          context: ./indexer
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rahbar-indexer:${{ github.sha }}
+      - name: Build and push ui image by commit SHA
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ui
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rahbar-ui:${{ github.sha }}
+
+  deploy:
+    name: Deploy SHA Release & Smoke-Test Ingress
+    runs-on: ubuntu-latest
+    needs: build-push
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install kustomize
+        run: |
+          curl -fsSL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.6.0/kustomize_v5.6.0_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin kustomize
+      - name: Create ephemeral kind cluster with Ingress
+        run: |
+          cat <<'EOF' > /tmp/kind-cd.yaml
+          kind: Cluster
+          apiVersion: kind.x-k8s.io/v1alpha4
+          nodes:
+            - role: control-plane
+              kubeadmConfigPatches:
+                - |
+                  kind: InitConfiguration
+                  nodeRegistration:
+                    kubeletExtraArgs:
+                      node-labels: "ingress-ready=true"
+              extraPortMappings:
+                - containerPort: 80
+                  hostPort: 80
+                  protocol: TCP
+          EOF
+          kind create cluster --name rahbar-cd --config /tmp/kind-cd.yaml
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+          kubectl wait --namespace ingress-nginx \
+            --for=condition=ready pod \
+            --selector=app.kubernetes.io/component=controller \
+            --timeout=180s
+      - name: Pin deployment overlay images to commit SHA (never latest)
+        working-directory: k8s/overlays/ci
+        run: |
+          kustomize edit set image \
+            "rahbar-api=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rahbar-api:${{ github.sha }}" \
+            "rahbar-indexer=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rahbar-indexer:${{ github.sha }}" \
+            "rahbar-ui=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rahbar-ui:${{ github.sha }}"
+      - name: Deploy SHA release manifests and wait for rollout
+        run: |
+          kubectl apply -f k8s/base/namespace.yaml
+          kubectl create configmap fixture-corpus -n rahbar \
+            --from-file=eval/fixtures/academic-rules-2023.md \
+            --from-file=eval/fixtures/academic-rules-2026.md \
+            --from-file=eval/fixtures/fees-2026.md
+          kubectl apply -k k8s/overlays/ci
+          kubectl rollout status statefulset/chroma -n rahbar --timeout=180s
+          kubectl rollout status deployment/redis -n rahbar --timeout=180s
+          kubectl wait --for=condition=complete job/indexer -n rahbar --timeout=180s
+          kubectl rollout status deployment/api -n rahbar --timeout=180s
+          kubectl rollout status deployment/ui -n rahbar --timeout=180s
+      - name: Smoke test UI and grounded /api/ask through Ingress
+        run: |
+          curl -fsS -H "Host: rahbar.local" http://127.0.0.1/ | grep -q "RAHBAR"
+          RESP=$(curl -fsS -X POST http://127.0.0.1/api/ask \
+            -H "Host: rahbar.local" \
+            -H "Content-Type: application/json" \
+            -d '{"question":"When is a student placed on academic warning?"}')
+          echo "$RESP"
+          python3 -c 'import json,sys; d=json.loads(sys.argv[1]); assert d["answered_from_context"] is True and len(d["citations"]) >= 1' "$RESP"
