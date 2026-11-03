@@ -96,9 +96,9 @@ jobs:
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
       - name: Scan api, indexer, and ui images (fail on fixable HIGH/CRITICAL)
         run: |
-          trivy image --severity HIGH,CRITICAL --ignore-unfixed --ignorefile .trivyignore --exit-code 1 "rahbar-api:${{ github.sha }}"
-          trivy image --severity HIGH,CRITICAL --ignore-unfixed --ignorefile .trivyignore --exit-code 1 "rahbar-indexer:${{ github.sha }}"
-          trivy image --severity HIGH,CRITICAL --ignore-unfixed --ignorefile .trivyignore --exit-code 1 "rahbar-ui:${{ github.sha }}"
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-api:${{ github.sha }}"
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-indexer:${{ github.sha }}"
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-ui:${{ github.sha }}"
 
   e2e-eval:
     name: Ephemeral kind Cluster E2E & Eval Gate
@@ -139,6 +139,8 @@ jobs:
       - name: Install ingress-nginx for kind
         run: |
           kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+          sleep 10
+          kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=180s
           kubectl wait --namespace ingress-nginx \
             --for=condition=ready pod \
             --selector=app.kubernetes.io/component=controller \

@@ -68,9 +68,12 @@ jobs:
     needs: build-push
     steps:
       - uses: actions/checkout@v4
-      - name: Install kustomize
+      - name: Install kustomize and kind
         run: |
           curl -fsSL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.6.0/kustomize_v5.6.0_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin kustomize
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.27.0/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
       - name: Create ephemeral kind cluster with Ingress
         run: |
           cat <<'EOF' > /tmp/kind-cd.yaml
@@ -91,6 +94,8 @@ jobs:
           EOF
           kind create cluster --name rahbar-cd --config /tmp/kind-cd.yaml
           kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+          sleep 10
+          kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=180s
           kubectl wait --namespace ingress-nginx \
             --for=condition=ready pod \
             --selector=app.kubernetes.io/component=controller \
