@@ -49,8 +49,8 @@ spec:
             httpGet:
               path: /api/v2/heartbeat
               port: 8000
-            periodSeconds: 2
-            failureThreshold: 30
+            periodSeconds: 5
+            failureThreshold: 60
           livenessProbe:
             httpGet:
               path: /api/v2/heartbeat
@@ -68,8 +68,8 @@ spec:
               cpu: "100m"
               memory: "256Mi"
             limits:
-              cpu: "500m"
-              memory: "768Mi"
+              cpu: "1000m"
+              memory: "1536Mi"
           volumeMounts:
             - name: chroma-data
               mountPath: /data

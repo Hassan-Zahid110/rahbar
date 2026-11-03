@@ -30,17 +30,23 @@ class ChromaRetriever:
 
     def __init__(self, settings: Settings, client: Any | None = None) -> None:
         self.settings = settings
-        if client is not None:
-            self.client = client
-        else:
+        # chromadb.HttpClient() makes a network call in its constructor. Creating it lazily
+        # keeps the API process alive (and /healthz green) while Chroma is still starting;
+        # /readyz then reports the outage instead of the pod crash-looping.
+        self._client: Any | None = client
+
+    @property
+    def client(self) -> Any:
+        if self._client is None:
             import chromadb
             from chromadb.config import Settings as ChromaSettings
 
-            self.client = chromadb.HttpClient(
-                host=settings.chroma_host,
-                port=settings.chroma_port,
+            self._client = chromadb.HttpClient(
+                host=self.settings.chroma_host,
+                port=self.settings.chroma_port,
                 settings=ChromaSettings(anonymized_telemetry=False),
             )
+        return self._client
 
     def inspect_index(self) -> tuple[bool, str, dict[str, object]]:
         """Verify Chroma reachability, non-empty collection, and embedding-model pin (4.3, 4.4)."""

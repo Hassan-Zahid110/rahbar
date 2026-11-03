@@ -28,15 +28,28 @@ def _log(msg: str, **fields: object) -> None:
     )
 
 
-def get_client(settings: IndexerSettings) -> Any:
+def get_client(settings: IndexerSettings, attempts: int = 30, delay_s: float = 4.0) -> Any:
+    """Connect to Chroma, waiting for it to come up (the Job and StatefulSet start together).
+
+    Without this, an indexer pod that starts before Chroma is serving exhausts the Job's
+    backoffLimit on connection-refused errors instead of simply waiting.
+    """
     import chromadb  # the thin client, from chromadb-client in requirements.txt
     from chromadb.config import Settings as ChromaSettings
 
-    return chromadb.HttpClient(
-        host=settings.chroma_host,
-        port=settings.chroma_port,
-        settings=ChromaSettings(anonymized_telemetry=False),
-    )
+    last_exc: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            return chromadb.HttpClient(
+                host=settings.chroma_host,
+                port=settings.chroma_port,
+                settings=ChromaSettings(anonymized_telemetry=False),
+            )
+        except Exception as exc:  # connection refused / DNS not ready yet
+            last_exc = exc
+            _log("chroma not reachable yet, retrying", attempt=attempt, error=str(exc))
+            time.sleep(delay_s)
+    raise RuntimeError(f"chroma unreachable after {attempts} attempts: {last_exc}")
 
 
 def invalidate_semantic_cache(settings: IndexerSettings) -> int | None:

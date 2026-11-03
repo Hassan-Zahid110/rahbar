@@ -93,7 +93,7 @@ jobs:
           docker build -t "rahbar-ui:${{ github.sha }}" ui
       - name: Install Trivy CLI
         run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+          curl -sfL "https://github.com/aquasecurity/trivy/releases/download/v0.59.1/trivy_0.59.1_Linux-64bit.tar.gz" | sudo tar -xz -C /usr/local/bin trivy
       - name: Scan api, indexer, and ui images (fail on fixable HIGH/CRITICAL)
         run: |
           trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-api:${{ github.sha }}"
