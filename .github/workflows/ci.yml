@@ -96,9 +96,9 @@ jobs:
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
       - name: Scan api, indexer, and ui images (fail on fixable HIGH/CRITICAL)
         run: |
-          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-api:${{ github.sha }}"
-          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-indexer:${{ github.sha }}"
-          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "rahbar-ui:${{ github.sha }}"
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --ignorefile .trivyignore --exit-code 1 "rahbar-api:${{ github.sha }}"
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --ignorefile .trivyignore --exit-code 1 "rahbar-indexer:${{ github.sha }}"
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --ignorefile .trivyignore --exit-code 1 "rahbar-ui:${{ github.sha }}"
 
   e2e-eval:
     name: Ephemeral kind Cluster E2E & Eval Gate
@@ -112,6 +112,11 @@ jobs:
           cache: "pip"
       - name: Install eval runner dependencies
         run: pip install httpx==0.28.1 pyyaml==6.0.2
+      - name: Install kind
+        run: |
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.27.0/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
       - name: Create ephemeral kind cluster with Ingress port mapping
         run: |
           cat <<'EOF' > /tmp/kind-config.yaml

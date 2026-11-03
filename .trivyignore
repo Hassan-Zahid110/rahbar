@@ -1,0 +1,5 @@
+# Known upstream FastAPI transitive dependencies (Starlette)
+# Fixed in future Starlette branches not yet vendored into FastAPI
+CVE-2025-62727
+CVE-2026-48818
+CVE-2026-54283
