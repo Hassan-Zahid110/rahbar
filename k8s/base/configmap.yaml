@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rahbar-config
+  namespace: rahbar
+data:
+  RETRIEVER: "chroma"
+  LLM_PROVIDER: "ollama-host"
+  # Shared embedding pin read by BOTH the indexer Job and the API Deployment (section 4.4)
+  EMBED_MODEL: "nomic-embed-text"
+  LLM_MODEL: "llama3.2:3b"
+  OLLAMA_URL: "http://host.minikube.internal:11434"
+  HOSTED_BASE_URL: ""
+  CHROMA_HOST: "chroma"
+  CHROMA_PORT: "8000"
+  CHROMA_COLLECTION: "rahbar"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  CACHE_ENABLED: "true"
+  CACHE_THRESHOLD: "0.90"
+  CACHE_TTL_SECONDS: "86400"
+  TOP_K: "5"
+  RELEVANCE_FLOOR: "0.45"
+  FILTER_SUPERSEDED: "true"
+  STRICT_GROUNDING_PROMPT: "true"
+  # Temperature 0.1 keeps factual extraction and JSON schema adherence near-deterministic without greedy loops.
+  TEMPERATURE: "0.1"
+  CHUNK_SIZE: "300"
+  CHUNK_OVERLAP: "50"
+  CORPUS_DIR: "/corpus"
+  LOG_LEVEL: "INFO"
