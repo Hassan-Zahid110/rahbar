@@ -1,0 +1,23 @@
+$ kubectl get endpoints -n rahbar
+NAME     ENDPOINTS                                               AGE
+api      10.244.0.18:8000,10.244.0.19:8000,10.244.0.20:8000     45m
+chroma   10.244.0.15:8000                                        48m
+redis    10.244.0.16:6379                                        48m
+ui       10.244.0.21:8080,10.244.0.22:8080                       45m
+
+$ kubectl describe svc api -n rahbar
+Name:              api
+Namespace:         rahbar
+Labels:            app=api
+Annotations:       <none>
+Selector:          app=api
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.96.142.87
+IPs:               10.96.142.87
+Port:              http  8000/TCP
+TargetPort:        8000/TCP
+Endpoints:         10.244.0.18:8000,10.244.0.19:8000,10.244.0.20:8000
+Session Affinity:  None
+Events:            <none>
