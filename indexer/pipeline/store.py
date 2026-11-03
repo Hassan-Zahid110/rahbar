@@ -53,8 +53,9 @@ def invalidate_semantic_cache(settings: IndexerSettings) -> int | None:
             socket_connect_timeout=5.0,
             socket_timeout=5.0,
         )
-        new_gen = int(r.incr(CACHE_GEN_KEY))
-        old_keys = list(r.smembers(CACHE_INDEX_KEY) or [])
+        new_gen = int(r.incr(CACHE_GEN_KEY))  # type: ignore[arg-type]
+        raw_members: Any = r.smembers(CACHE_INDEX_KEY)
+        old_keys = list(raw_members or [])
         if old_keys:
             r.delete(*old_keys)
         r.delete(CACHE_INDEX_KEY)

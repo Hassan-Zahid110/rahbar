@@ -17,7 +17,7 @@ from pathlib import Path
 from urllib.parse import quote, urlsplit
 
 import httpx
-import yaml
+import yaml  # type: ignore[import-untyped]
 
 USER_AGENT = "RAHBAR-coursework-fetcher/1.0 (CS4032 student project; one request at a time)"
 PAUSE_SECONDS = 2.0
@@ -108,3 +108,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

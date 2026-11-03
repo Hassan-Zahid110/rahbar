@@ -101,13 +101,14 @@ class SemanticCache:
 
     def invalidate(self) -> int:
         """Expire all cached entries by bumping generation_id and purging tracked keys."""
-        if self._client is None:
+        client = self._client
+        if client is None:
             return 0
-        new_gen = int(self._client.incr(CACHE_GEN_KEY))
-        keys = list(self._client.smembers(CACHE_INDEX_KEY) or [])
+        new_gen = int(client.incr(CACHE_GEN_KEY))
+        keys = list(client.smembers(CACHE_INDEX_KEY) or [])
         if keys:
-            self._client.delete(*keys)
-        self._client.delete(CACHE_INDEX_KEY)
+            client.delete(*keys)
+        client.delete(CACHE_INDEX_KEY)
         log.info("cache invalidated", extra={"generation_id": new_gen, "purged": len(keys)})
         return new_gen
 
@@ -115,19 +116,20 @@ class SemanticCache:
         self, question: str, query_vector: list[float], request_id: str
     ) -> tuple[AskResponse | None, float]:
         """Return (cached_response, best_similarity) if similarity >= settings.cache_threshold."""
-        if not self.enabled or is_followup(question):
+        client = self._client
+        if not self.enabled or client is None or is_followup(question):
             return None, 0.0
         try:
             gen_id = self.current_generation()
             prefix = f"rahbar:cache:gen:{gen_id}:"
-            tracked = list(self._client.smembers(CACHE_INDEX_KEY) or [])
+            tracked = list(client.smembers(CACHE_INDEX_KEY) or [])
             best_sim = 0.0
             best_payload: dict[str, Any] | None = None
 
             for key in tracked:
                 if not str(key).startswith(prefix):
                     continue
-                raw = self._client.get(key)
+                raw = client.get(key)
                 if not raw:
                     continue
                 entry = json.loads(raw)
@@ -155,7 +157,8 @@ class SemanticCache:
         validation_failed: bool = False,
     ) -> bool:
         """Store a validated answer under the active index generation if safe to cache."""
-        if not self.enabled or never_cache(question, response, validation_failed=validation_failed):
+        client = self._client
+        if not self.enabled or client is None or never_cache(question, response, validation_failed=validation_failed):
             return False
         try:
             gen_id = self.current_generation()
@@ -167,9 +170,10 @@ class SemanticCache:
                 "response": response.model_copy(update={"cached": False}).model_dump(),
                 "created_at": int(time.time()),
             }
-            self._client.set(key, json.dumps(payload), ex=self.settings.cache_ttl_seconds)
-            self._client.sadd(CACHE_INDEX_KEY, key)
+            client.set(key, json.dumps(payload), ex=self.settings.cache_ttl_seconds)
+            client.sadd(CACHE_INDEX_KEY, key)
             return True
         except Exception as exc:
             log.warning("cache store failed", extra={"error": str(exc)})
             return False
+
