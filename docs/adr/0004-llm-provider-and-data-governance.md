@@ -25,3 +25,4 @@ RAHBAR must support pluggable generation backends selected solely via `LLM_PROVI
 ## Consequences
 - **Easier**: Swapping between local GPU-accelerated `ollama-host`, in-cluster Ollama, cloud `hosted` APIs, and offline `stub` CI takes a single ConfigMap key edit; zero API keys exist in Git history.
 - **Harder / Watch-fors**: `ollama-host` requires `OLLAMA_HOST=0.0.0.0` on the host laptop and an explicit TCP `11434` egress rule in `NetworkPolicy`; embedding model parity between indexer and API is guarded in code by `/readyz` (`section 4.4`) rather than human memory.
+

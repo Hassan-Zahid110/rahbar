@@ -144,3 +144,4 @@ def generate_with_retry_and_fallback(
     metrics.FALLBACKS.inc()
     metrics.ABSTENTIONS.labels(reason="fallback").inc()
     return make_fallback_answer(last_error), True
+

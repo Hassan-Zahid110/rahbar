@@ -21,3 +21,4 @@ TargetPort:        8000/TCP
 Endpoints:         10.244.0.18:8000,10.244.0.19:8000,10.244.0.20:8000
 Session Affinity:  None
 Events:            <none>
+

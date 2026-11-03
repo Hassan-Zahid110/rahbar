@@ -20,3 +20,4 @@ Conditions:
   AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recommendation
   ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource
 Events:           <none>
+

@@ -68,3 +68,4 @@ def estimate_tokens(text: str) -> int:
     """Fast token estimate (~0.75 words/token -> words * 4 // 3) when provider omits usage."""
     words = len(text.split())
     return max(1, (words * 4) // 3) if words else 0
+

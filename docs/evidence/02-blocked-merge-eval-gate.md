@@ -29,3 +29,4 @@ Error: Process completed with exit code 1.
 The PR was updated by restoring structure-aware chunking (`CHUNK_SIZE: 300`, `CHUNK_OVERLAP: 50`).
 - The re-run of `e2e-eval` reported `gate passed` (`recall@5: 1.0000`, `citation_validity: 1.0`, `abstention_correctness: 1.0`).
 - All 6 checks turned **Green**, and the merge button became unlocked.
+

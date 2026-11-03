@@ -442,3 +442,4 @@ def test_ollama_and_hosted_providers_parse_schema_with_mock_transport(monkeypatc
     )
     ans_hosted = HostedProvider(hosted_settings).generate("Attendance?", passages)
     assert ans_hosted.citations[0].source == "rules.md"
+

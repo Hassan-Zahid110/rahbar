@@ -27,3 +27,4 @@ We use **Redis (`redis:7.4.2-alpine` Deployment backed by the `cache-data` ReadW
 ## Consequences
 - **Easier**: Sub-millisecond cache lookups over active question embeddings, atomic cross-pod invalidation from the indexer Job, AOF persistence across Redis pod restarts, and clean `/readyz` health verification via `PING`.
 - **Harder / Watch-fors**: Client-side cosine scan in Python scales linearly up to a few thousand active 24h entries (well within campus QA volume, <2 ms for 500 entries); at 100k+ concurrent entries, Redis Stack (`FT.SEARCH` HNSW) would be needed. Threshold selection is sensitive to false hits between numerically adjacent clauses and must be calibrated empirically (`docs/PIPELINE.md`).
+

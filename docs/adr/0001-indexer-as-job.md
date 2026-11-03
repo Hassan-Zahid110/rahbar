@@ -31,3 +31,4 @@ We separate the write path and read path into distinct Kubernetes workloads that
 ## Consequences
 - **Easier**: API image stays small and low-memory (no OCR packages); HPA scales out in seconds; rolling updates maintain `maxUnavailable: 0`; policy updates re-index on demand or weekly without touching `Deployment/api`.
 - **Harder / Watch-fors**: On a brand-new cluster, `Deployment/api` pods intentionally sit at `0/1 READY` (`Running`, not crashing) until `Job/indexer` completes. Operators and CI scripts must wait for `job/indexer` completion before expecting `deployment/api` rollout readiness.
+

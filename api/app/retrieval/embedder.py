@@ -67,3 +67,4 @@ def embed_query(text: str, settings: Settings) -> list[float]:
         if not isinstance(embeddings, list) or not embeddings:
             raise RuntimeError(f"Ollama /api/embed returned invalid payload for model {model!r}")
         return [float(x) for x in embeddings[0]]
+

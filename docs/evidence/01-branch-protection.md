@@ -45,3 +45,4 @@ Output:
   "required_pull_request_reviews": 1
 }
 ```
+

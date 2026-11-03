@@ -136,3 +136,4 @@ questions:
     relevant:
       - {source: fee-structure-page.html, section: "Tuition"}
     expect: "fee"
+

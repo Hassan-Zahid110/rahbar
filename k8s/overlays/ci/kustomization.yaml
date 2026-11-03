@@ -44,3 +44,4 @@ patches:
           name: corpus-data
           configMap:
             name: fixture-corpus
+

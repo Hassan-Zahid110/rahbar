@@ -177,3 +177,4 @@ jobs:
           kubectl get pods,svc,ingress,jobs -n rahbar -o wide || true
           kubectl logs job/indexer -n rahbar || true
           kubectl logs -l app=api -n rahbar --tail=100 || true
+

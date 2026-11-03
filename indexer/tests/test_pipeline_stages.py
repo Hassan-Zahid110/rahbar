@@ -161,3 +161,4 @@ def test_store_records_pin_and_removes_stale_chunks_without_emptying(monkeypatch
     v2 = [hash_embed(c2[0].text, dim=64)]
     assert store(c2, v2, settings, client=client) == 1
     assert set(client.collections["rahbar"].rows.keys()) == {c2[0].id}
+

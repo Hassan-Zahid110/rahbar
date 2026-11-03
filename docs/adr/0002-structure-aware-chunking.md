@@ -25,3 +25,4 @@ University regulatory documents (the FAST-NUCES Academic Rules Handbook, Student
 ## Consequences
 - **Easier**: Every retrieved chunk carries a human-verifiable `(source, section, page)` citation; repealed policies never contaminate answers to present-tense student questions; table rows remain readable to the LLM.
 - **Harder / Watch-fors**: Heading heuristics must avoid misclassifying numbered list sentences as section titles (guarded by length `<= 85` chars and trailing-period checks, verified by unit tests in `indexer/tests/test_pipeline_stages.py`).
+

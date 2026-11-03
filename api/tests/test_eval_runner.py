@@ -71,3 +71,4 @@ def test_summarise_and_gate_detect_regressions() -> None:
     }
     failures = run_eval.gate(bad_summary, {"recall_at_5": 0.95})
     assert len(failures) == 3
+

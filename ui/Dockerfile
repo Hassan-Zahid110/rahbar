@@ -13,3 +13,4 @@ USER 101:101
 EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
+

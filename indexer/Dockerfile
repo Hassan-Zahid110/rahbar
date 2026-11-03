@@ -27,3 +27,4 @@ RUN chown -R 10001:10001 /app
 USER 10001:10001
 
 ENTRYPOINT ["python", "-m", "pipeline.run"]
+

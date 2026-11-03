@@ -12,3 +12,4 @@ ui-57cf849767-q2p8l                   2m           14Mi
 $ kubectl top nodes
 NAME       CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
 minikube   824m         20%    3240Mi          52%
+
