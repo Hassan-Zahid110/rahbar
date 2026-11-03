@@ -6,6 +6,13 @@ import os
 from dataclasses import dataclass
 
 
+def _bool(name: str, default: bool = False) -> bool:
+    val = os.environ.get(name)
+    if val is None:
+        return default
+    return val.strip().lower() in {"1", "true", "yes", "on"}
+
+
 @dataclass(frozen=True)
 class IndexerSettings:
     embed_model: str        # EMBED_MODEL: must equal the API's value (section 4.4)
@@ -16,6 +23,10 @@ class IndexerSettings:
     chunk_size: int
     chunk_overlap: int
     ollama_url: str
+    redis_host: str = ""
+    redis_port: int = 6379
+    chunk_strategy: str = "structure"   # "structure" (default) or "fixed" (failure mode B)
+    disable_ocr: bool = False           # True only when testing failure mode A
 
 
 def get_settings() -> IndexerSettings:
@@ -28,4 +39,8 @@ def get_settings() -> IndexerSettings:
         chunk_size=int(os.environ.get("CHUNK_SIZE", 400)),
         chunk_overlap=int(os.environ.get("CHUNK_OVERLAP", 50)),
         ollama_url=os.environ.get("OLLAMA_URL", "http://host.minikube.internal:11434"),
+        redis_host=os.environ.get("REDIS_HOST", ""),
+        redis_port=int(os.environ.get("REDIS_PORT", 6379)),
+        chunk_strategy=os.environ.get("CHUNK_STRATEGY", "structure"),
+        disable_ocr=_bool("DISABLE_OCR", False),
     )
