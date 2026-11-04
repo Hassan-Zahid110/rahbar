@@ -18,6 +18,7 @@ spec:
     spec:
       serviceAccountName: rahbar-chroma-sa
       automountServiceAccountToken: false
+      enableServiceLinks: false
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -31,6 +32,8 @@ spec:
             - containerPort: 8000
               name: http
           env:
+            - name: CHROMA_PORT
+              value: "8000"
             - name: IS_PERSISTENT
               value: "TRUE"
             - name: PERSIST_DIRECTORY
