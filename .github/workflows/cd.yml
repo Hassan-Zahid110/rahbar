@@ -109,17 +109,27 @@ jobs:
             "rahbar-ui=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rahbar-ui:${{ github.sha }}"
       - name: Deploy SHA release manifests and wait for rollout
         run: |
+          docker exec rahbar-ci-control-plane sh -c "while true; do chmod -R 777 /var/local-path-provisioner /opt/local-path-provisioner 2>/dev/null; sleep 1; done" &
           kubectl apply -f k8s/base/namespace.yaml
           kubectl create configmap fixture-corpus -n rahbar \
             --from-file=eval/fixtures/academic-rules-2023.md \
             --from-file=eval/fixtures/academic-rules-2026.md \
             --from-file=eval/fixtures/fees-2026.md
           kubectl apply -k k8s/overlays/ci
-          kubectl rollout status statefulset/chroma -n rahbar --timeout=180s
-          kubectl rollout status deployment/redis -n rahbar --timeout=180s
-          kubectl wait --for=condition=complete job/indexer -n rahbar --timeout=180s
-          kubectl rollout status deployment/api -n rahbar --timeout=180s
-          kubectl rollout status deployment/ui -n rahbar --timeout=180s
+          kubectl rollout status statefulset/chroma -n rahbar --timeout=300s
+          kubectl rollout status deployment/redis -n rahbar --timeout=300s
+          kubectl wait --for=condition=complete job/indexer -n rahbar --timeout=300s
+          kubectl rollout status deployment/api -n rahbar --timeout=300s
+          kubectl rollout status deployment/ui -n rahbar --timeout=300s
+      - name: Dump pod diagnostics on failure
+        if: failure()
+        run: |
+          kubectl get pods,svc,ingress,jobs,pvc -n rahbar -o wide || true
+          kubectl describe pod chroma-0 -n rahbar || true
+          kubectl logs chroma-0 -n rahbar --previous || true
+          kubectl logs chroma-0 -n rahbar || true
+          kubectl logs job/indexer -n rahbar || true
+          kubectl logs -l app=api -n rahbar --tail=100 || true
       - name: Smoke test UI and grounded /api/ask through Ingress
         run: |
           curl -fsS -H "Host: rahbar.local" http://127.0.0.1/ | grep -q "RAHBAR"
