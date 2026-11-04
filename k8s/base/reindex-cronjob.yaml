@@ -1,0 +1,100 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reindex
+  namespace: rahbar
+  labels:
+    app: indexer
+spec:
+  schedule: "0 2 * * 0"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        metadata:
+          labels:
+            app: indexer
+        spec:
+          serviceAccountName: rahbar-indexer-sa
+          automountServiceAccountToken: false
+          restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            fsGroup: 10001
+            seccompProfile:
+              type: RuntimeDefault
+          initContainers:
+            - name: fetch-corpus
+              image: rahbar-indexer:dev
+              imagePullPolicy: IfNotPresent
+              command:
+                - "python"
+                - "-m"
+                - "pipeline.fetch_corpus"
+              envFrom:
+                - configMapRef:
+                    name: rahbar-config
+              securityContext:
+                runAsNonRoot: true
+                readOnlyRootFilesystem: true
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - ALL
+              resources:
+                requests:
+                  cpu: "50m"
+                  memory: "128Mi"
+                limits:
+                  cpu: "500m"
+                  memory: "512Mi"
+              volumeMounts:
+                - name: corpus-data
+                  mountPath: /corpus
+                - name: corpus-sources
+                  mountPath: /etc/rahbar-corpus
+                  readOnly: true
+                - name: tmp
+                  mountPath: /tmp
+          containers:
+            - name: indexer
+              image: rahbar-indexer:dev
+              imagePullPolicy: IfNotPresent
+              envFrom:
+                - configMapRef:
+                    name: rahbar-config
+              securityContext:
+                runAsNonRoot: true
+                readOnlyRootFilesystem: true
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - ALL
+              resources:
+                requests:
+                  cpu: "200m"
+                  memory: "512Mi"
+                limits:
+                  cpu: "1000m"
+                  memory: "1536Mi"
+              volumeMounts:
+                - name: corpus-data
+                  mountPath: /corpus
+                - name: tmp
+                  mountPath: /tmp
+          volumes:
+            - name: corpus-data
+              persistentVolumeClaim:
+                claimName: corpus-data
+            - name: corpus-sources
+              configMap:
+                name: corpus-sources
+                optional: true
+            - name: tmp
+              emptyDir: {}
+

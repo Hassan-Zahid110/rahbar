@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: rahbar
+
+# Note: secret.placeholder.yaml is deliberately excluded so `kubectl apply -k`
+# never overwrites the CLI-created `rahbar-secret`.
+resources:
+  - namespace.yaml
+  - serviceaccounts.yaml
+  - configmap.yaml
+  - chroma-statefulset.yaml
+  - redis.yaml
+  - api-deployment.yaml
+  - ui-deployment.yaml
+  - indexer-job.yaml
+  - reindex-cronjob.yaml
+  - services.yaml
+  - ingress.yaml
+  - hpa.yaml
+  - networkpolicy.yaml
+

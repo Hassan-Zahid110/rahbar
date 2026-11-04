@@ -1,4 +1,4 @@
-"""The API process. It reads the index; it never builds it (section 4.2).
+"""The API process. It reads the index; it never writes it (section 4.2).
 
 Run locally with stubs:   make dev     (then open http://localhost:8000)
 Run in the container:     uvicorn app.main:app --host 0.0.0.0 --port 8000
@@ -6,12 +6,12 @@ Run in the container:     uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 from __future__ import annotations
 
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 import logging
 import os
 import time
 import uuid
-from collections.abc import AsyncIterator
-from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
@@ -20,7 +20,9 @@ from .config import get_settings
 from .logjson import configure_logging, request_id_var
 from .providers.llm import get_provider
 from .retrieval import get_retriever
+from .retrieval.chroma import ChromaRetriever
 from .routes import ask, health, metrics
+from .services.cache import SemanticCache
 
 log = logging.getLogger("rahbar.api")
 
@@ -32,13 +34,30 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     app.state.settings = settings
     app.state.retriever = get_retriever(settings)
     app.state.provider = get_provider(settings)
-    # STARTER-TODO(4.4): compare the collection's embedding-model metadata with
-    # settings.embed_model here, and make /readyz fail on a mismatch.
-    # This process only reads the index. The indexer Job writes it.
+    app.state.cache = SemanticCache(settings)
+
+    # Startup embedding-pin verification (section 4.4): log exact conflict immediately,
+    # and let /readyz withhold the pod from the Service while keeping /healthz alive.
+    if isinstance(app.state.retriever, ChromaRetriever):
+        pin_ok, detail, info = app.state.retriever.inspect_index()
+        if not pin_ok:
+            log.error(
+                "startup readiness check failed; pod will stay unready until resolved",
+                extra={"reason": detail, **info},
+            )
+        else:
+            log.info("verified embedding pin against vector store", extra=info)
+
     log.info(
         "api started",
-        extra={"retriever": settings.retriever, "llm_provider": settings.llm_provider,
-               "embed_model": settings.embed_model, "top_k": settings.top_k},
+        extra={
+            "retriever": settings.retriever,
+            "llm_provider": settings.llm_provider,
+            "embed_model": settings.embed_model,
+            "top_k": settings.top_k,
+            "relevance_floor": settings.relevance_floor,
+            "temperature": settings.temperature,
+        },
     )
     yield
 
@@ -64,8 +83,10 @@ async def request_context(request: Request, call_next):  # type: ignore[no-untyp
         metrics.REQUESTS.labels(path=path, status=str(status)).inc()
         metrics.LATENCY.labels(path=path).observe(elapsed)
         if path not in ("/healthz", "/readyz", "/metrics"):
-            log.info("request", extra={"path": path, "status": status,
-                                       "ms": round(elapsed * 1000, 1)})
+            log.info(
+                "request",
+                extra={"path": path, "status": status, "ms": round(elapsed * 1000, 1)},
+            )
         request_id_var.reset(token)
 
 

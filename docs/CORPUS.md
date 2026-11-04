@@ -1,15 +1,37 @@
-# Corpus
+# Corpus Documentation
 
-<!-- STARTER-TODO(2): fill every row, then delete this comment. -->
+Source: FAST-NUCES public website (`nu.edu.pk`) · Documents: 9 · Pages: 180+ total
 
-Source: FAST-NUCES public website / our own documents (pick one) · Documents: ? · Pages: ?
+Our corpus is compiled directly from official public documents published on the FAST-NUCES website (`nu.edu.pk`) across four public repositories: `/public/downloads/`, `/Admissions/ProspectusUpload/`, `/OricResources/ResearchPolicies/`, and `/Student/`. It fulfills all seven properties defined in Section 2 of the course specification to ensure that every RAG failure mode (A through E) is realistically reachable, reproducible, and verifiable.
 
-| # | Required property | Document(s) that provide it | Evidence or notes |
-| --- | --- | --- | --- |
-| 1 | At least 6 documents, 40 pages | | |
-| 2 | Two versions of one policy | | Which supersedes which, and how your metadata records it |
-| 3 | Scanned, image-only PDF | | `pdffonts` output, or how you proved it has no text layer |
-| 4 | A table with real information | | |
-| 5 | Long definitions | | |
-| 6 | A deliberately absent topic | | What you left out, and why a user would plausibly ask about it |
-| 7 | Exact-term content | | Clause numbers, codes, thresholds, fees |
+| # | Required property | Document(s) that provide it | Failure mode it makes reachable | Evidence and notes |
+|---|---|---|---|---|
+| **1** | At least 6 documents and 40 pages in total | 9 documents across 180+ pages (including 58 pages in Academic Rules Handbook, 64 pages in Student Handbook, 26 pages in Undergrad Academic Rules 2023, 8 pages in ORIC Policy, and HTML web pages). | None; establishes realistic corpus scale and prevents trivial toy retrievals. | Verified via `corpus/MANIFEST.md` and `pdfplumber` page inspection. Total size >34 MB. |
+| **2** | At least 2 documents that are different versions of the same policy | 1. `undergraduate-academic-rules-aug-2023.pdf` (`doc_version: "2023-08"`, `superseded: true`)<br>2. `academic-rules-handbook-jun-2026.pdf` (`doc_version: "2026-06"`, `superseded: false`)<br>3. `annual-report-2019-20.pdf` (`doc_version: "2019-20"`, `superseded: true`) vs `annual-report-2023-24.pdf` (`doc_version: "2023-24"`, `superseded: false`) | **Failure Mode E (Outdated source)**: Dense semantic embeddings blur publication dates and rule changes; a query asking *"What minimum attendance is required to sit the final exam?"* retrieves 75% from the repealed 2023 handbook alongside 80% from the 2026 handbook. | Handled via chunk metadata: every chunk carries `doc_version` and `superseded: bool`. The retriever applies `where={"superseded": False}` unless `asks_for_historical_version(question)` detects explicit user intent to query older regulations. |
+| **3** | At least 1 scanned, image-only PDF with no text layer | `faculty-entrepreneurship-and-technical-start-ups-policy.pdf` (ORIC Research Policy 27, 8 pages, 3,872,809 bytes). | **Failure Mode A (Bad extraction / blind index)**: Without an OCR fallback path, `pdfplumber.extract_text()` returns exactly 0 characters, leaving the document invisible in the vector store. | `pdffonts` returns an empty font table (`0 extracted text chars`). Our stage 1 extractor (`extract.py`) detects pages with fewer than 25 text characters and routes them to `pdf2image` + `pytesseract` (`ocr=True`), allowing full text recovery. |
+| **4** | At least 1 document with a table that carries real information | 1. `fee-structure-page.html`: tabular breakdown of tuition fees per credit hour across undergraduate and graduate programmes, admission fees, and refund timelines.<br>2. `grading-page.html`: grade point scale mapping letter grades (`A+` to `F`) to grade points (`4.00` to `0.00`) and percentage brackets.<br>3. `annual-report-2023-24.pdf`: faculty counts by campus, student enrollments, and publications. | **Failure Mode A (Mangled tables)**: Naive whitespace tokenizers collapse multi-column tabular data into a jumbled, unaligned word stream, destroying association between programme names and fee amounts. | `extract.py` parses HTML `<table>` elements and PDF table bounding boxes via `pdfplumber.find_tables()`, converting rows into clean GitHub-flavoured Markdown tables (`| ... |`) while separating surrounding prose. |
+| **5** | At least 1 document with long definitions that a fixed-size chunker would cut in half | `student-handbook-jun-2026.pdf` (64 pages), specifically Section 8 ("Generative AI and Academic Integrity Policy") and disciplinary definition clauses spanning multiple paragraphs and sub-sections. | **Failure Mode B (Poor chunks / boundary severing)**: Fixed-size 100-token chunks sever definition preambles from their operative exceptions or consequences, causing retrieval to return incomplete context. | Addressed via structure-aware chunking (`chunk.py`): text is split on structural section and clause headers first, keeping paragraphs intact up to `CHUNK_SIZE` tokens with `CHUNK_OVERLAP` neighbour overlap. |
+| **6** | At least 1 realistic topic that is deliberately absent | **Hostel Accommodations and Campus Transport Facilities**. We intentionally excluded `Transport and Hostel Facilities.pdf` (from `/Admissions/ProspectusUpload/`). The Student Handbook only briefly mentions that hostel premises exist, but gives zero rules regarding room allocation, curfew hours, fees, or application procedures. | **Abstention (Section 3.4)**: When a student asks *"How do I apply for a hostel room?"* or *"What is the hostel curfew time for female students?"*, a conventional RAG system hallucinates plausible policies from other institutions. | Handled via relevance floor (`settings.relevance_floor = 0.45`) and strict system prompt constraints: queries on absent topics fail to clear the floor, returning `answered_from_context: false`, `citations: []`, and an honest statement that the corpus does not cover the topic. |
+| **7** | Exact-term content (course codes, clause numbers, CGPA thresholds, fees) | 1. **Clause numbers**: Clause `1.21` (Attendance 80%) in Academic Rules Handbook 2026 vs Clause `1` in Prospectus 2026.<br>2. **CGPA thresholds**: CGPA `< 2.00` for Academic Warning (Clause `5.4`).<br>3. **Exact fees**: BS tuition fee per credit hour (PKR `11,000` / `10,000`), admission fee (PKR `30,000`), and transcript fee (PKR `1,500`) in `fee-structure-page.html`. | Dense semantic vectors blur exact numbers, clause tags, and acronyms into generalized semantic neighborhoods (e.g. `1.21` maps to general attendance concepts). | Handled by preserving clause tags in chunk headers (`[5.4 Academic Warning]`), tuning chunk overlap, and validating that returned citations match the exact clause and section retrieved. |
+
+## Manifest of Fetched Documents
+
+All documents are fetched polite-crawler style by `corpus/fetch.py` (one request at a time with a 2-second rate-limit pause). Raw files are stored under `corpus/raw/` (gitignored), and their cryptographic SHA-256 fingerprints are recorded in `corpus/MANIFEST.md`:
+
+| Document Name | Version | Superseded | File Name | Size (Bytes) | SHA-256 Checksum |
+|---|---|---|---|---|---|
+| Undergraduate Academic Rules (Aug 2023) | 2023-08 | Yes | `undergraduate-academic-rules-aug-2023.pdf` | 14,888,226 | `cddfe1f5e9770132e27d686abd1c2e6742ef4732f0c2f431ed514bc1691d2004` |
+| Academic Rules Handbook (Jun 2026) | 2026-06 | No | `academic-rules-handbook-jun-2026.pdf` | 987,731 | `4cfee3e191b84aeb9168f17656c7642212ff52b90f2780d028b33c154aa74b62` |
+| Prospectus 2026 - Academic Rules | 2026 | No | `prospectus-2026-academic-rules-and-regulations.pdf` | 7,066,767 | `a7e7f6896a59eb9413c9e8826e6c4c018ebe52045d10cebfcba92ded10a3174a` |
+| Student Handbook (Jun 2026) | 2026-06 | No | `student-handbook-jun-2026.pdf` | 1,980,275 | `717eb4b8d37e50185ffe952735c08ef19edd16074d547f10ebd22cf23da67c4d` |
+| Annual Report 2019-20 | 2019-20 | Yes | `annual-report-2019-20.pdf` | 891,216 | `4d1961e340b13273bb039805ab5fd5e2c7bd0144a5bd5870f2ce4da13becd650` |
+| Annual Report 2023-24 | 2023-24 | No | `annual-report-2023-24.pdf` | 5,100,456 | `3c9d89e84af24df4b939f10e32c620a3877b276acea1db52f1aae4098e5c057a` |
+| Fee Structure page | 2026-27 | No | `fee-structure-page.html` | 91,429 | `ec8872ae77cac7e96e20e6979933f36b00aaeb0ab3f668a2116e521c655e7b90` |
+| Grading page | 2026 | No | `grading-page.html` | 95,673 | `66a995b4d8474e914d37bfa14755a5361f47327d5a7314f9b7ec15d9b6176e6e` |
+| Faculty Entrepreneurship Policy | 2022-05 | No | `faculty-entrepreneurship-and-technical-start-ups-policy.pdf` | 3,872,809 | `c2d5c7648d1593daf34d5c0596ede476e8984b0551830cc1690017e6e22f1359` |
+
+To verify file integrity after downloading from a clean clone, run:
+```bash
+python corpus/fetch.py --verify
+```
+All files will report `ok` against the recorded SHA-256 signatures.
