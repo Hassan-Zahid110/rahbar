@@ -11,8 +11,8 @@ A student wants to know whether they can register for a prerequisite course afte
 ---
 
 ## Team Members
-- **Hassan Zahid** — `Hassan-Zahid110` (Roll No: `<Your Roll Number>`)
-- **<Partner's Full Name>** — `<Partner's GitHub Username>` (Roll No: `<Partner's Roll Number>`)
+- **Hassan Zahid** — `Hassan-Zahid110`
+- **Faisal** — `faisalmemon353`
 
 *Course: Software Construction and Development (SCD) — FAST-NUCES Islamabad*
 
