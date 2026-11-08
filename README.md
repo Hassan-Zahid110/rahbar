@@ -10,6 +10,15 @@ A student wants to know whether they can register for a prerequisite course afte
 
 ---
 
+## Team Members
+- **Hassan Zahid** — `Hassan-Zahid110` (Roll No: `<Your Roll Number>`)
+- **<Partner's Full Name>** — `<Partner's GitHub Username>` (Roll No: `<Partner's Roll Number>`)
+
+*Course: Software Construction and Development (SCD) — FAST-NUCES Islamabad*
+
+---
+---
+
 ## Architecture Overview
 
 RAHBAR enforces a strict separation of concerns: **the Indexer is the sole writer to the vector store and semantic cache; the horizontally autoscaled API Deployment only reads on every question.**
