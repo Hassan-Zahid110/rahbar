@@ -19,6 +19,8 @@ class HostedProvider:
 
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
+        # Report "groq" in responses and logs when the Groq preset is selected.
+        self.name = "groq" if settings.llm_provider == "groq" else "hosted"
 
     def generate(self, question: str, passages: list[Passage]) -> Answer:
         """Call an OpenAI-compatible `/chat/completions` endpoint in JSON mode and

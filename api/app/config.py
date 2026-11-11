@@ -29,7 +29,7 @@ def _bool(name: str, default: bool) -> bool:
 class Settings:
     # Which implementations to load. "stub" needs no cluster, no model, no network.
     retriever: str = "stub"          # RETRIEVER: stub | chroma
-    llm_provider: str = "stub"       # LLM_PROVIDER: stub | ollama-host | ollama-incluster | hosted
+    llm_provider: str = "stub"       # LLM_PROVIDER: stub | ollama-host | ollama-incluster | hosted | groq
 
     # The embedding pin (section 4.4). The indexer reads the same ConfigMap key.
     embed_model: str = "nomic-embed-text"
@@ -61,12 +61,20 @@ class Settings:
     log_level: str = "INFO"
 
 
+# Groq is an OpenAI-compatible hosted provider. LLM_PROVIDER=groq is a preset over the
+# hosted provider so only the API key (from the Secret) has to be supplied.
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+GROQ_DEFAULT_MODEL = "llama-3.1-8b-instant"
+
+
 def get_settings() -> Settings:
     retriever = os.environ.get("RETRIEVER", "stub")
     default_floor = 0.0 if retriever == "stub" else 0.35
+    llm_provider = os.environ.get("LLM_PROVIDER", "stub")
+    is_groq = llm_provider == "groq"
     return Settings(
         retriever=retriever,
-        llm_provider=os.environ.get("LLM_PROVIDER", "stub"),
+        llm_provider=llm_provider,
         embed_model=os.environ.get("EMBED_MODEL", "nomic-embed-text"),
         chroma_host=os.environ.get("CHROMA_HOST", "chroma"),
         chroma_port=_int("CHROMA_PORT", 8000),
@@ -81,10 +89,10 @@ def get_settings() -> Settings:
         filter_superseded=_bool("FILTER_SUPERSEDED", True),
         strict_grounding_prompt=_bool("STRICT_GROUNDING_PROMPT", True),
         temperature=_float("TEMPERATURE", 0.2),
-        llm_model=os.environ.get("LLM_MODEL", "llama3.2:3b"),
+        llm_model=os.environ.get("LLM_MODEL") or (GROQ_DEFAULT_MODEL if is_groq else "llama3.2:3b"),
         llm_timeout_seconds=_float("LLM_TIMEOUT_SECONDS", 90.0),
         ollama_url=os.environ.get("OLLAMA_URL", "http://host.minikube.internal:11434"),
-        hosted_base_url=os.environ.get("HOSTED_BASE_URL", ""),
+        hosted_base_url=os.environ.get("HOSTED_BASE_URL") or (GROQ_BASE_URL if is_groq else ""),
         llm_api_key=os.environ.get("LLM_API_KEY", ""),
         log_level=os.environ.get("LOG_LEVEL", "INFO"),
     )

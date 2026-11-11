@@ -179,6 +179,27 @@ Or open `http://rahbar.local` in your browser to chat via the web UI.
 
 ---
 
+## Using Groq as the LLM Provider
+
+Groq serves open models (Llama 3.x) behind an OpenAI-compatible API with a free tier. `LLM_PROVIDER=groq` is a preset over the hosted provider: it fills in `HOSTED_BASE_URL=https://api.groq.com/openai/v1` and `LLM_MODEL=llama-3.1-8b-instant` unless you override them in the ConfigMap. Get a key at https://console.groq.com/keys.
+
+**Locally (no cluster):**
+```bash
+export LLM_API_KEY="gsk_..."   # never commit this
+make dev-groq                  # http://localhost:8000
+```
+
+**On the cluster:**
+```bash
+export LLM_API_KEY="gsk_..."
+make secret                                                     # Secret from the CLI, never a file
+kubectl patch configmap rahbar-config -n rahbar --type merge -p '{"data":{"LLM_PROVIDER":"groq"}}'
+kubectl rollout restart deployment/api -n rahbar
+```
+API egress on TCP 443 is already allowed by `k8s/base/networkpolicy.yaml`. The embedding model stays pinned (`EMBED_MODEL`): Groq only replaces generation, not retrieval.
+
+---
+
 ## Security Disciplines (Section 4.7)
 
 1. **Zero Secrets in Git**: `*-secret.yaml` and `.env` are gitignored. Committed templates contain `REPLACE_ME` and are excluded from `kustomization.yaml`.

@@ -13,7 +13,7 @@ INGRESS_IP ?= $(shell minikube ip 2>/dev/null)
 HOST ?= rahbar.local
 
 .DEFAULT_GOAL := help
-.PHONY: help install test lint dev cluster images apply secret index ask fetch eval eval-fixtures check
+.PHONY: help install test lint dev dev-groq cluster images apply secret index ask fetch eval eval-fixtures check
 
 help: ## list the targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-14s %s\n", $$1, $$2}'
@@ -34,6 +34,10 @@ lint: ## ruff and mypy over everything in Python
 
 dev: ## run the API with stubs on http://localhost:8000, serving the chat UI too
 	cd api && SERVE_UI_DIR=../ui RETRIEVER=stub LLM_PROVIDER=stub "$(BIN)/uvicorn" app.main:app --reload --port 8000
+
+dev-groq: ## like dev, but real generation through Groq: export LLM_API_KEY=gsk_... first
+	@test -n "$$LLM_API_KEY" || { echo "export LLM_API_KEY=gsk_... first (https://console.groq.com/keys)"; exit 1; }
+	cd api && SERVE_UI_DIR=../ui RETRIEVER=stub LLM_PROVIDER=groq "$(BIN)/uvicorn" app.main:app --reload --port 8000
 
 cluster: ## start minikube with Calico, then enable metrics-server and ingress
 	minikube start --driver=docker --cni=calico --memory=6144 --cpus=4
