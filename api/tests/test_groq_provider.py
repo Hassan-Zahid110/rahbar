@@ -41,3 +41,8 @@ def test_groq_without_key_fails_loudly(monkeypatch: pytest.MonkeyPatch) -> None:
     with pytest.raises(RuntimeError, match="LLM_API_KEY"):
         provider.generate("What CGPA triggers academic warning?", [])
 
+
+
+def test_groq_default_model_is_universal():
+    from app.config import GROQ_DEFAULT_MODEL
+    assert GROQ_DEFAULT_MODEL == "openai/gpt-oss-20b"
