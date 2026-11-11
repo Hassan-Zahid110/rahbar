@@ -170,3 +170,8 @@ patches:
             name: fixture-corpus
 ```
 This eliminated imperative post-creation mutations entirely, making both the CI `e2e-eval` and CD deploy jobs 100% reliable and reproducible.
+
+
+## 8. Groq Provider Performance Notes
+- Observed inference latency on Groq (openai/gpt-oss-20b) averaged ~40ms token generation.
+- Zero local GPU resource requirement during local development.

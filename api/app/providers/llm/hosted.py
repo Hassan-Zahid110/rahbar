@@ -66,3 +66,5 @@ class HostedProvider:
         metrics.TOKENS_OUT.inc(out_toks)
 
         return Answer.model_validate_json(content)
+
+# Provider type: OpenAI-compatible REST API client with Bearer auth token

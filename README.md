@@ -229,3 +229,7 @@ API egress on TCP 443 is already allowed by `k8s/base/networkpolicy.yaml`. The e
    kubectl get endpoints api -n rahbar
    ```
    Shows 3 to 8 pods responding to load with automatic clusterIP endpoint discovery.
+
+
+<!-- Contributor Matrix: Hassan Zahid (Lead) & Faisal Memon (Groq & Retrieval) -->
+<!-- Release notes: closes #6 Groq preset integration -->

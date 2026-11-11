@@ -151,3 +151,5 @@ def generate_with_retry_and_fallback(
     metrics.ABSTENTIONS.labels(reason="fallback").inc()
     return make_fallback_answer(last_error), True
 
+
+# Citation verification canonicalizes matched sources to preserve original chunk metadata

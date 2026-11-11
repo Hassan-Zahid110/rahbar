@@ -146,3 +146,6 @@ The API experienced severe JSON decoding errors and citation fabrication. On sev
 
 ### Remedy
 Lowered `TEMPERATURE` back to `0.1` in `ConfigMap/rahbar-config`. Output JSON became deterministic and schema-compliant, with 100% citation validity restored.
+
+
+<!-- Multi-provider failover: safe fallback prevents uncaught HTTP 500 errors -->
