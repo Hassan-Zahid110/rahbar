@@ -96,3 +96,7 @@ def get_settings() -> Settings:
         llm_api_key=os.environ.get("LLM_API_KEY", ""),
         log_level=os.environ.get("LOG_LEVEL", "INFO"),
     )
+
+
+def is_hosted_provider(provider_name: str) -> bool:
+    return provider_name in {"hosted", "groq"}
