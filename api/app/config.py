@@ -64,7 +64,7 @@ class Settings:
 # Groq is an OpenAI-compatible hosted provider. LLM_PROVIDER=groq is a preset over the
 # hosted provider so only the API key (from the Secret) has to be supplied.
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_DEFAULT_MODEL = "llama-3.1-8b-instant"
+GROQ_DEFAULT_MODEL = "openai/gpt-oss-20b"
 
 
 def get_settings() -> Settings:
