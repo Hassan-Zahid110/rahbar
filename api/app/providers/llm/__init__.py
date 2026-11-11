@@ -14,10 +14,11 @@ def get_provider(settings: Settings) -> LLMProvider:
         from .ollama import OllamaProvider
 
         return OllamaProvider(settings)
-    if name == "hosted":
+    if name in ("hosted", "groq"):
         from .hosted import HostedProvider
 
         return HostedProvider(settings)
     raise ValueError(
-        f"unknown LLM_PROVIDER {name!r}; expected stub, ollama-host, ollama-incluster or hosted"
+        f"unknown LLM_PROVIDER {name!r}; expected stub, ollama-host, ollama-incluster, "
+        "hosted or groq"
     )
