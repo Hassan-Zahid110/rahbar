@@ -232,3 +232,4 @@ API egress on TCP 443 is already allowed by `k8s/base/networkpolicy.yaml`. The e
 
 
 <!-- Contributor Matrix: Hassan Zahid (Lead) & Faisal Memon (Groq & Retrieval) -->
+<!-- Release notes: closes #6 Groq preset integration -->
