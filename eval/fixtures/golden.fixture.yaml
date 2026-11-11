@@ -51,3 +51,5 @@ questions:
     relevant:
       - {source: academic-rules-2026.md, section: "1. Attendance"}
     expect: "80"
+
+# Verified golden benchmark fixture questions
