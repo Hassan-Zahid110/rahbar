@@ -78,7 +78,13 @@ def filter_and_verify_citations(
         if matched is None and src_l in by_source:
             for cand in by_source[src_l]:
                 cand_sec = cand.section.strip().lower()
-                if sec_l and (cand_sec.startswith(sec_l) or sec_l.startswith(cand_sec)):
+                cand_num = cand_sec.split(".")[0].strip()
+                cite_num = sec_l.split(".")[0].strip()
+                if (
+                    (sec_l and (cand_sec.startswith(sec_l) or sec_l.startswith(cand_sec)))
+                    or (cand_num and cite_num and cand_num == cite_num and cand_num.isdigit())
+                    or (sec_l and sec_l in cand.text.lower())
+                ):
                     matched = cand
                     break
 
