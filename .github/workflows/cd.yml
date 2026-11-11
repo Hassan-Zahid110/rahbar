@@ -109,7 +109,7 @@ jobs:
             "rahbar-ui=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rahbar-ui:${{ github.sha }}"
       - name: Deploy SHA release manifests and wait for rollout
         run: |
-          docker exec rahbar-ci-control-plane sh -c "while true; do chmod -R 777 /var/local-path-provisioner /opt/local-path-provisioner 2>/dev/null; sleep 1; done" &
+          docker exec rahbar-cd-control-plane sh -c "while true; do chmod -R 777 /var/local-path-provisioner /opt/local-path-provisioner 2>/dev/null; sleep 1; done" &
           kubectl apply -f k8s/base/namespace.yaml
           kubectl create configmap fixture-corpus -n rahbar \
             --from-file=eval/fixtures/academic-rules-2023.md \
@@ -132,8 +132,9 @@ jobs:
           kubectl logs -l app=api -n rahbar --tail=100 || true
       - name: Smoke test UI and grounded /api/ask through Ingress
         run: |
-          curl -fsS -H "Host: rahbar.local" http://127.0.0.1/ | grep -q "RAHBAR"
-          RESP=$(curl -fsS -X POST http://127.0.0.1/api/ask \
+          sleep 10
+          curl --retry 5 --retry-all-errors --retry-delay 2 -fsS -H "Host: rahbar.local" http://127.0.0.1/ | grep -q "RAHBAR"
+          RESP=$(curl --retry 5 --retry-all-errors --retry-delay 2 -fsS -X POST http://127.0.0.1/api/ask \
             -H "Host: rahbar.local" \
             -H "Content-Type: application/json" \
             -d '{"question":"When is a student placed on academic warning?"}')
