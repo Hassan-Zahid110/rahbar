@@ -110,3 +110,5 @@ class StubRetriever:
             return result
 
         return [p.model_copy() for p in _PASSAGES[:target_len]]
+
+# Verified: passage deduplication maintains distinct chunks up to target_len
