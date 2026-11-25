@@ -1,0 +1,9 @@
+# RAGOps Part C2 Release Gate Configuration
+# Enforces quality, grounding, and latency SLOs before rolling out a candidate pipeline on Kubernetes.
+gate_thresholds:
+  max_recall5_drop: 0.02            # recall@5 may not drop by more than 2 percentage points (0.02) vs baseline
+  min_recall5_absolute: 0.88        # absolute floor on component recall@5
+  min_faithfulness: 0.85            # end-to-end faithfulness must be >= 85%
+  min_abstention_correctness: 1.00  # abstention correctness on unanswerable queries may not drop below baseline (100%)
+  min_citation_validity: 0.80       # citation validity must be >= 80%
+  max_p95_latency_ms: 2500.0        # p95 end-to-end latency must stay under 2500 ms
