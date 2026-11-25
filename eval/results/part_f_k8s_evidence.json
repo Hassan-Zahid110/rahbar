@@ -1,0 +1,128 @@
+{
+  "cluster_context": "docker-desktop (desktop-control-plane, v1.36.1)",
+  "namespace": "rahbar",
+  "persistent_volumes": {
+    "ragops-data-pvc": "Bound (1Gi, RWO, mounts /data for data_lake, quarantine, archive, eval_results, traces)",
+    "chroma-data-chroma-0": "Bound (2Gi, RWO, ChromaDB HNSW vector store)",
+    "cache-data": "Bound (512Mi, RWO, Redis AOF semantic cache)"
+  },
+  "jobs_completed": {
+    "ragops-ingest": "Complete (1/1, duration 7s)",
+    "eval-gate": "Complete (1/1, duration 6s)"
+  },
+  "configmap_threshold_edit_demo": {
+    "patch_applied": "GATE_MAX_P95_LATENCY_MS: 2500.0 -> 0.10",
+    "outcome_before_patch": "PASS (exit code 0)",
+    "outcome_after_patch": "FAIL (BLOCKED: measured p95=15.8890 ms > 0.1000 ms, exit code 1)",
+    "image_rebuilt": false
+  },
+  "controlled_release_and_rollback": {
+    "candidate_deployment": "deployment.apps/api-candidate (2/2 READY, service/api-candidate, collection=rahbar_candidate, embed_model=hybrid-512)",
+    "rollout_to_live": "deployment.apps/api rolled out with maxUnavailable=0 (CHROMA_COLLECTION=rahbar_candidate, EMBED_MODEL=hybrid-512)",
+    "rollback_command": "kubectl rollout undo deployment/api -n rahbar",
+    "post_undo_trace": {
+      "trace_id": "d19dbe4817ae46df94f9ec686400f2f2",
+      "timestamp": "2026-11-25T08:41:30Z",
+      "user_query": "What is the minimum attendance percentage required to sit the final examination?",
+      "rewritten_query": "What is the minimum attendance percentage required to sit the final examination?",
+      "embedding_model": "hash-384",
+      "embedding_version": "1.0-hash",
+      "collection_name": "rahbar",
+      "collection_version": "v2-batch-b",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "academic-rules-2027-md-2027-0002",
+          "doc_id": "academic-rules-2027.md",
+          "doc_version": "2027",
+          "source": "academic-rules-2027.md",
+          "section": "1. Attendance",
+          "page": 1,
+          "score": 0.277372
+        }
+      ],
+      "filters_applied": {
+        "superseded": false
+      },
+      "reranked_order": [
+        "academic-rules-2027-md-2027-0002"
+      ],
+      "prompt_hash": "e3280ded7c768233511077b5",
+      "model_and_params": {
+        "provider": "groq",
+        "model": "openai/gpt-oss-20b",
+        "temperature": 0.1,
+        "top_k": 5,
+        "relevance_floor": 0.18,
+        "reranker_enabled": false
+      },
+      "response": {
+        "answer": "80 percent",
+        "answered_from_context": true,
+        "confidence": "high"
+      },
+      "citations": [
+        {
+          "source": "academic-rules-2027.md",
+          "section": "1. Attendance",
+          "page": 1
+        }
+      ],
+      "guardrail_actions": [
+        "input_rail:passed",
+        "retrieval_rail:passed_clean",
+        "output_rail:verified_citations:count=1"
+      ],
+      "latency_per_stage_ms": {
+        "embed_ms": 0.065,
+        "retrieve_ms": 3.449,
+        "rerank_ms": 0.001,
+        "generate_ms": 1092.44,
+        "validate_ms": 2.5,
+        "total_ms": 1099.623
+      },
+      "cache_status": "miss"
+    }
+  },
+  "resource_measurements_and_allocations": {
+    "api": {
+      "measured_cpu": "18m",
+      "measured_mem": "84Mi",
+      "request_cpu": "100m",
+      "request_mem": "192Mi",
+      "limit_cpu": "500m",
+      "limit_mem": "512Mi"
+    },
+    "chroma": {
+      "measured_cpu": "24m",
+      "measured_mem": "162Mi",
+      "request_cpu": "150m",
+      "request_mem": "256Mi",
+      "limit_cpu": "1000m",
+      "limit_mem": "1024Mi"
+    },
+    "redis": {
+      "measured_cpu": "6m",
+      "measured_mem": "14Mi",
+      "request_cpu": "50m",
+      "request_mem": "64Mi",
+      "limit_cpu": "250m",
+      "limit_mem": "256Mi"
+    },
+    "ragops-ingest-job": {
+      "measured_cpu": "65m",
+      "measured_mem": "118Mi",
+      "request_cpu": "150m",
+      "request_mem": "256Mi",
+      "limit_cpu": "1000m",
+      "limit_mem": "1024Mi"
+    },
+    "eval-gate-job": {
+      "measured_cpu": "52m",
+      "measured_mem": "112Mi",
+      "request_cpu": "100m",
+      "request_mem": "192Mi",
+      "limit_cpu": "500m",
+      "limit_mem": "512Mi"
+    }
+  }
+}

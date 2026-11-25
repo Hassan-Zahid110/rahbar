@@ -59,6 +59,10 @@ class Settings:
     llm_api_key: str = field(default="", repr=False)   # from the Secret; never log it
 
     log_level: str = "INFO"
+    trace_log_path: str = "traces/traces.jsonl"
+    reranker_enabled: bool = False
+    collection_version: str = "v1"
+    embed_version: str = "1.0"
 
 
 # Groq is an OpenAI-compatible hosted provider. LLM_PROVIDER=groq is a preset over the
@@ -95,6 +99,10 @@ def get_settings() -> Settings:
         hosted_base_url=os.environ.get("HOSTED_BASE_URL") or (GROQ_BASE_URL if is_groq else ""),
         llm_api_key=os.environ.get("LLM_API_KEY", ""),
         log_level=os.environ.get("LOG_LEVEL", "INFO"),
+        trace_log_path=os.environ.get("TRACE_LOG_PATH", "traces/traces.jsonl"),
+        reranker_enabled=_bool("RERANKER_ENABLED", False),
+        collection_version=os.environ.get("COLLECTION_VERSION", "v1"),
+        embed_version=os.environ.get("EMBED_VERSION", "1.0"),
     )
 
 

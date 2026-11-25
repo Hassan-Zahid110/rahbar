@@ -203,25 +203,66 @@ def _strip_front_matter(text: str) -> str:
     return text
 
 
+def _parse_front_matter(text: str) -> dict[str, str]:
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return {}
+    meta: dict[str, str] = {}
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        if ":" in line:
+            k, _, v = line.partition(":")
+            meta[k.strip()] = v.strip().strip('"').strip("'")
+    return meta
+
+
 def extract(path: str, doc_version: str, superseded: bool) -> Document:
     """Return the document's text page by page, running OCR on image-only PDF pages."""
     file_path = Path(path)
     disable_ocr = os.environ.get("DISABLE_OCR", "").strip().lower() in {"1", "true", "yes", "on"}
     suffix = file_path.suffix.lower()
+    raw_meta: dict[str, str] = {}
 
     if suffix == ".pdf":
         pages = _extract_pdf(file_path, disable_ocr=disable_ocr)
+        raw_meta = {
+            "source": file_path.name,
+            "title": file_path.stem.replace("-", " ").title(),
+            "doc_version": doc_version,
+            "page_count": str(len(pages)),
+        }
     elif suffix in {".html", ".htm"}:
         pages = _extract_html(file_path)
+        raw_meta = {
+            "source": file_path.name,
+            "title": file_path.stem.replace("-", " ").title(),
+            "doc_version": doc_version,
+            "page_count": str(len(pages)),
+        }
     else:
-        raw_text = file_path.read_text(encoding="utf-8", errors="replace")
-        if suffix == ".md":
-            raw_text = _strip_front_matter(raw_text)
-        pages = [Page(source=file_path.name, page=1, text=raw_text, ocr=False)]
+        full_raw = file_path.read_text(encoding="utf-8", errors="replace")
+        raw_meta = _parse_front_matter(full_raw) if suffix == ".md" else {}
+        body_text = _strip_front_matter(full_raw) if suffix == ".md" else full_raw
+        pages = [Page(source=file_path.name, page=1, text=body_text, ocr=False)]
+
+    eff_version = raw_meta.get("doc_version", doc_version)
+    eff_policy_id = raw_meta.get("policy_id", "")
+    eff_title = raw_meta.get("title", "")
+    eff_date = raw_meta.get("date", "")
+    try:
+        eff_page_count = int(raw_meta.get("page_count", "0"))
+    except ValueError:
+        eff_page_count = 0
 
     return Document(
         source=file_path.name,
-        doc_version=doc_version,
+        doc_version=eff_version,
         superseded=superseded,
         pages=pages,
+        policy_id=eff_policy_id,
+        title=eff_title,
+        date=eff_date,
+        page_count=eff_page_count,
+        raw_metadata=raw_meta,
     )

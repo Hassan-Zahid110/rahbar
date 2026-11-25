@@ -1,0 +1,252 @@
+{
+  "thresholds": {
+    "max_recall5_drop": 0.02,
+    "min_recall5_absolute": 0.88,
+    "min_faithfulness": 0.85,
+    "min_abstention_correctness": 1.0,
+    "min_citation_validity": 0.8,
+    "max_p95_latency_ms": 2500.0
+  },
+  "failing_candidate_gate": {
+    "candidate_name": "candidate_fail",
+    "baseline_name": "baseline",
+    "overall_decision": "FAIL",
+    "thresholds_applied": {
+      "max_recall5_drop": 0.02,
+      "min_recall5_absolute": 0.88,
+      "min_faithfulness": 0.85,
+      "min_abstention_correctness": 1.0,
+      "min_citation_validity": 0.8,
+      "max_p95_latency_ms": 2500.0
+    },
+    "checks": [
+      {
+        "metric": "recall@5_drop_vs_baseline",
+        "baseline": 0.9091,
+        "candidate": 0.7273,
+        "measured": 0.1818,
+        "operator": "<=",
+        "threshold": 0.02,
+        "passed": false
+      },
+      {
+        "metric": "recall@5_absolute",
+        "baseline": 0.9091,
+        "candidate": 0.7273,
+        "measured": 0.7273,
+        "operator": ">=",
+        "threshold": 0.88,
+        "passed": false
+      },
+      {
+        "metric": "faithfulness",
+        "baseline": 0.8636,
+        "candidate": 0.8182,
+        "measured": 0.8182,
+        "operator": ">=",
+        "threshold": 0.85,
+        "passed": false
+      },
+      {
+        "metric": "abstention_correctness",
+        "baseline": 1.0,
+        "candidate": 0.1667,
+        "measured": 0.1667,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": false
+      },
+      {
+        "metric": "citation_validity",
+        "baseline": 0.8182,
+        "candidate": 0.6364,
+        "measured": 0.6364,
+        "operator": ">=",
+        "threshold": 0.8,
+        "passed": false
+      },
+      {
+        "metric": "latency_p95_ms",
+        "baseline": 1.078,
+        "candidate": 0.635,
+        "measured": 0.635,
+        "operator": "<=",
+        "threshold": 2500.0,
+        "passed": true
+      }
+    ],
+    "three_level_comparison": {
+      "module_similarity_gap": {
+        "baseline": 0.1061,
+        "candidate": 0.0807,
+        "delta": -0.0254
+      },
+      "component_recall@3": {
+        "baseline": 0.9091,
+        "candidate": 0.7273,
+        "delta": -0.1818
+      },
+      "component_recall@5": {
+        "baseline": 0.9091,
+        "candidate": 0.7273,
+        "delta": -0.1818
+      },
+      "component_mrr": {
+        "baseline": 0.8864,
+        "candidate": 0.7045,
+        "delta": -0.1819
+      },
+      "component_ndcg@5": {
+        "baseline": 0.8923,
+        "candidate": 0.7105,
+        "delta": -0.1818
+      },
+      "component_typo_noise_recall@5": {
+        "baseline": 0.8636,
+        "candidate": 0.6818,
+        "delta": -0.1818
+      },
+      "e2e_faithfulness": {
+        "baseline": 0.8636,
+        "candidate": 0.8182,
+        "delta": -0.0454
+      },
+      "e2e_abstention_correctness": {
+        "baseline": 1.0,
+        "candidate": 0.1667,
+        "delta": -0.8333
+      },
+      "e2e_citation_validity": {
+        "baseline": 0.8182,
+        "candidate": 0.6364,
+        "delta": -0.1818
+      },
+      "e2e_latency_p95_ms": {
+        "baseline": 1.078,
+        "candidate": 0.635,
+        "delta": -0.443
+      }
+    }
+  },
+  "passing_candidate_gate": {
+    "candidate_name": "candidate_pass",
+    "baseline_name": "baseline",
+    "overall_decision": "PASS",
+    "thresholds_applied": {
+      "max_recall5_drop": 0.02,
+      "min_recall5_absolute": 0.88,
+      "min_faithfulness": 0.85,
+      "min_abstention_correctness": 1.0,
+      "min_citation_validity": 0.8,
+      "max_p95_latency_ms": 2500.0
+    },
+    "checks": [
+      {
+        "metric": "recall@5_drop_vs_baseline",
+        "baseline": 0.9091,
+        "candidate": 1.0,
+        "measured": -0.0909,
+        "operator": "<=",
+        "threshold": 0.02,
+        "passed": true
+      },
+      {
+        "metric": "recall@5_absolute",
+        "baseline": 0.9091,
+        "candidate": 1.0,
+        "measured": 1.0,
+        "operator": ">=",
+        "threshold": 0.88,
+        "passed": true
+      },
+      {
+        "metric": "faithfulness",
+        "baseline": 0.8636,
+        "candidate": 1.0,
+        "measured": 1.0,
+        "operator": ">=",
+        "threshold": 0.85,
+        "passed": true
+      },
+      {
+        "metric": "abstention_correctness",
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "measured": 1.0,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": true
+      },
+      {
+        "metric": "citation_validity",
+        "baseline": 0.8182,
+        "candidate": 1.0,
+        "measured": 1.0,
+        "operator": ">=",
+        "threshold": 0.8,
+        "passed": true
+      },
+      {
+        "metric": "latency_p95_ms",
+        "baseline": 1.078,
+        "candidate": 1.599,
+        "measured": 1.599,
+        "operator": "<=",
+        "threshold": 2500.0,
+        "passed": true
+      }
+    ],
+    "three_level_comparison": {
+      "module_similarity_gap": {
+        "baseline": 0.1061,
+        "candidate": 0.3395,
+        "delta": 0.2334
+      },
+      "component_recall@3": {
+        "baseline": 0.9091,
+        "candidate": 1.0,
+        "delta": 0.0909
+      },
+      "component_recall@5": {
+        "baseline": 0.9091,
+        "candidate": 1.0,
+        "delta": 0.0909
+      },
+      "component_mrr": {
+        "baseline": 0.8864,
+        "candidate": 0.9545,
+        "delta": 0.0681
+      },
+      "component_ndcg@5": {
+        "baseline": 0.8923,
+        "candidate": 0.9664,
+        "delta": 0.0741
+      },
+      "component_typo_noise_recall@5": {
+        "baseline": 0.8636,
+        "candidate": 0.9545,
+        "delta": 0.0909
+      },
+      "e2e_faithfulness": {
+        "baseline": 0.8636,
+        "candidate": 1.0,
+        "delta": 0.1364
+      },
+      "e2e_abstention_correctness": {
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "e2e_citation_validity": {
+        "baseline": 0.8182,
+        "candidate": 1.0,
+        "delta": 0.1818
+      },
+      "e2e_latency_p95_ms": {
+        "baseline": 1.078,
+        "candidate": 1.599,
+        "delta": 0.521
+      }
+    }
+  }
+}

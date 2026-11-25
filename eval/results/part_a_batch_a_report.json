@@ -1,0 +1,239 @@
+{
+  "timestamp": "2026-11-25T08:12:08Z",
+  "total_documents": 6,
+  "passed": 6,
+  "failed_quarantined": 0,
+  "failures_by_check": {
+    "quality": 0,
+    "completeness": 0,
+    "recency": 0,
+    "uniqueness": 0
+  },
+  "actions": {
+    "index_new": 6,
+    "index_update": 0,
+    "skip_unchanged": 0,
+    "supersede_and_index": 0,
+    "quarantine": 0
+  },
+  "results": [
+    {
+      "source": "academic-rules-2026.md",
+      "policy_id": "academic-rules",
+      "doc_version": "2026",
+      "overall": "pass",
+      "action": "index_new",
+      "sha256": "9be116a9696b21a6",
+      "supersedes_source": null,
+      "quarantine_path": null,
+      "checks": {
+        "quality": {
+          "status": "pass",
+          "reason": "clean_extraction: 1364 alphanumeric chars across 1 page(s)"
+        },
+        "completeness": {
+          "status": "pass",
+          "reason": "metadata_complete: title='Margalla Institute of Technology: Academic Rules (2026 Edition)', version=2026, pages=2"
+        },
+        "recency": {
+          "status": "pass",
+          "reason": "current_version: new policy family 'academic-rules' (v2026)"
+        },
+        "uniqueness": {
+          "status": "pass",
+          "reason": "unique_content: max_cosine_sim=0.0000 < 0.90"
+        }
+      }
+    },
+    {
+      "source": "fees-2026.md",
+      "policy_id": "fees",
+      "doc_version": "2026",
+      "overall": "pass",
+      "action": "index_new",
+      "sha256": "b59289faa5b69c4a",
+      "supersedes_source": null,
+      "quarantine_path": null,
+      "checks": {
+        "quality": {
+          "status": "pass",
+          "reason": "clean_extraction: 881 alphanumeric chars across 1 page(s)"
+        },
+        "completeness": {
+          "status": "pass",
+          "reason": "metadata_complete: title='Margalla Institute of Technology: Tuition and Fee Schedule (Fall 2026)', version=2026, pages=1"
+        },
+        "recency": {
+          "status": "pass",
+          "reason": "current_version: new policy family 'fees' (v2026)"
+        },
+        "uniqueness": {
+          "status": "pass",
+          "reason": "unique_content: max_cosine_sim=0.3421 < 0.90"
+        }
+      }
+    },
+    {
+      "source": "final-year-project-2026.md",
+      "policy_id": "fyp-regulations",
+      "doc_version": "2026",
+      "overall": "pass",
+      "action": "index_new",
+      "sha256": "9dc9c4abe5eccfd2",
+      "supersedes_source": null,
+      "quarantine_path": null,
+      "checks": {
+        "quality": {
+          "status": "pass",
+          "reason": "clean_extraction: 822 alphanumeric chars across 1 page(s)"
+        },
+        "completeness": {
+          "status": "pass",
+          "reason": "metadata_complete: title='Margalla Institute of Technology: Final Year Project Regulations (2026)', version=2026, pages=1"
+        },
+        "recency": {
+          "status": "pass",
+          "reason": "current_version: new policy family 'fyp-regulations' (v2026)"
+        },
+        "uniqueness": {
+          "status": "pass",
+          "reason": "unique_content: max_cosine_sim=0.4206 < 0.90"
+        }
+      }
+    },
+    {
+      "source": "grading-policy-2026.md",
+      "policy_id": "grading-policy",
+      "doc_version": "2026",
+      "overall": "pass",
+      "action": "index_new",
+      "sha256": "de1a18ce079caaeb",
+      "supersedes_source": null,
+      "quarantine_path": null,
+      "checks": {
+        "quality": {
+          "status": "pass",
+          "reason": "clean_extraction: 944 alphanumeric chars across 1 page(s)"
+        },
+        "completeness": {
+          "status": "pass",
+          "reason": "metadata_complete: title='Margalla Institute of Technology: Grading and Assessment Policy (2026)', version=2026, pages=1"
+        },
+        "recency": {
+          "status": "pass",
+          "reason": "current_version: new policy family 'grading-policy' (v2026)"
+        },
+        "uniqueness": {
+          "status": "pass",
+          "reason": "unique_content: max_cosine_sim=0.5273 < 0.90"
+        }
+      }
+    },
+    {
+      "source": "library-and-lab-rules-2026.md",
+      "policy_id": "library-lab-rules",
+      "doc_version": "2026",
+      "overall": "pass",
+      "action": "index_new",
+      "sha256": "fb1eff939050d7b8",
+      "supersedes_source": null,
+      "quarantine_path": null,
+      "checks": {
+        "quality": {
+          "status": "pass",
+          "reason": "clean_extraction: 820 alphanumeric chars across 1 page(s)"
+        },
+        "completeness": {
+          "status": "pass",
+          "reason": "metadata_complete: title='Margalla Institute of Technology: Library and Computing Lab Regulations (2026)', version=2026, pages=1"
+        },
+        "recency": {
+          "status": "pass",
+          "reason": "current_version: new policy family 'library-lab-rules' (v2026)"
+        },
+        "uniqueness": {
+          "status": "pass",
+          "reason": "unique_content: max_cosine_sim=0.3986 < 0.90"
+        }
+      }
+    },
+    {
+      "source": "scholarship-financial-aid-2026.md",
+      "policy_id": "scholarship-policy",
+      "doc_version": "2026",
+      "overall": "pass",
+      "action": "index_new",
+      "sha256": "35b4ce53338c0475",
+      "supersedes_source": null,
+      "quarantine_path": null,
+      "checks": {
+        "quality": {
+          "status": "pass",
+          "reason": "clean_extraction: 872 alphanumeric chars across 1 page(s)"
+        },
+        "completeness": {
+          "status": "pass",
+          "reason": "metadata_complete: title='Margalla Institute of Technology: Scholarship and Financial Aid Policy (2026)', version=2026, pages=1"
+        },
+        "recency": {
+          "status": "pass",
+          "reason": "current_version: new policy family 'scholarship-policy' (v2026)"
+        },
+        "uniqueness": {
+          "status": "pass",
+          "reason": "unique_content: max_cosine_sim=0.5188 < 0.90"
+        }
+      }
+    }
+  ],
+  "incremental_update": {
+    "new_documents_indexed": 6,
+    "updated_documents_reindexed": 0,
+    "unchanged_documents_skipped": 0,
+    "superseded_documents_archived": 0,
+    "quarantined_documents": 0,
+    "chunks_embedded_this_run": 20,
+    "total_chunks_in_store": 20,
+    "embedded_and_upserted_chunks": 20,
+    "deleted_chunks": 0,
+    "superseded_chunks_marked": 0,
+    "document_chunk_counts": {
+      "academic-rules-2026.md": {
+        "doc_id": "academic-rules-2026.md",
+        "doc_version": "2026",
+        "superseded": false,
+        "chunk_count": 5
+      },
+      "fees-2026.md": {
+        "doc_id": "fees-2026.md",
+        "doc_version": "2026",
+        "superseded": false,
+        "chunk_count": 3
+      },
+      "final-year-project-2026.md": {
+        "doc_id": "final-year-project-2026.md",
+        "doc_version": "2026",
+        "superseded": false,
+        "chunk_count": 3
+      },
+      "grading-policy-2026.md": {
+        "doc_id": "grading-policy-2026.md",
+        "doc_version": "2026",
+        "superseded": false,
+        "chunk_count": 3
+      },
+      "library-and-lab-rules-2026.md": {
+        "doc_id": "library-and-lab-rules-2026.md",
+        "doc_version": "2026",
+        "superseded": false,
+        "chunk_count": 3
+      },
+      "scholarship-financial-aid-2026.md": {
+        "doc_id": "scholarship-financial-aid-2026.md",
+        "doc_version": "2026",
+        "superseded": false,
+        "chunk_count": 3
+      }
+    }
+  }
+}

@@ -118,6 +118,7 @@ def _fixed_window_chunks(doc: Document, size: int, overlap: int) -> list[Chunk]:
                     page=page.page,
                     doc_version=doc.doc_version,
                     superseded=doc.superseded,
+                    doc_id=doc.policy_id or doc.source,
                 )
             )
             if start + size >= len(words):
@@ -215,6 +216,7 @@ def chunk(doc: Document, size: int, overlap: int) -> list[Chunk]:
                     page=page_no,
                     doc_version=doc.doc_version,
                     superseded=doc.superseded,
+                    doc_id=doc.policy_id or doc.source,
                 )
             )
             return _tail_tokens(raw_body, overlap)

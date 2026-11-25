@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-11-25T08:53:05Z",
+  "time_window": "last_24h",
+  "total_traces_analyzed": 57,
+  "top1_retrieval_similarity_distribution": {
+    "count": 57,
+    "min": 0.0963,
+    "p25": 0.2329,
+    "p50_median": 0.3431,
+    "mean": 0.3596,
+    "p75": 0.5303,
+    "p95": 0.5664,
+    "max": 0.596
+  },
+  "abstention_rate": 0.2456,
+  "abstained_queries_count": 14,
+  "cache_hit_rate": 0.0,
+  "cache_hits_count": 0,
+  "p95_latency_per_stage_ms": {
+    "embed_ms": {
+      "p50_ms": 0.0,
+      "p95_ms": 0.0,
+      "mean_ms": 0.001
+    },
+    "retrieve_ms": {
+      "p50_ms": 0.959,
+      "p95_ms": 1.021,
+      "mean_ms": 1.005
+    },
+    "rerank_ms": {
+      "p50_ms": 0.0,
+      "p95_ms": 0.0,
+      "mean_ms": 0.0
+    },
+    "generate_ms": {
+      "p50_ms": 0.051,
+      "p95_ms": 0.07,
+      "mean_ms": 19.205
+    },
+    "validate_ms": {
+      "p50_ms": 0.004,
+      "p95_ms": 0.006,
+      "mean_ms": 0.047
+    },
+    "total_ms": {
+      "p50_ms": 1.286,
+      "p95_ms": 1.921,
+      "mean_ms": 20.6
+    }
+  },
+  "injection_attempts_flagged_queries": 8,
+  "injection_guardrail_actions_total": 8,
+  "part_d5_root_cause_from_trace_only": {
+    "trace_id": "d362986a3afe493b8f0b1bc5a8f0fc81",
+    "user_query": "What is the maximum Turnitin similarity index permitted for the Final Year Project thesis report?",
+    "embedding_model": "hash-384",
+    "top_retrieved_chunk_id": "final-year-project-2026-md-2026-0003",
+    "top_retrieved_source": "final-year-project-2026.md",
+    "top_retrieved_doc_version": "2026",
+    "top_retrieved_score": 0.196724,
+    "filters_applied": {
+      "superseded": false
+    },
+    "configured_relevance_floor": 0.22,
+    "guardrail_actions": [
+      "input_rail:passed",
+      "retrieval_rail:passed_clean",
+      "relevance_rail:abstained_below_floor:top_score=0.1967<floor=0.2200"
+    ],
+    "five_line_report_diagnosis": [
+      "1. Trace ID d362986a3afe493b8f0b1bc5a8f0fc81 shows query 'What is the maximum Turnitin similarity index permitted for the Final Year Project thesis report?' embedded with hash-384 (v1.0-hash) against collection rahbar with filter {'superseded': False}.",
+      "2. The retriever ranked the correct ground-truth chunk 'final-year-project-2026-md-2026-0003' (final-year-project-2026.md, v2026) at rank 1, proving the chunk exists and was not excluded by the superseded filter.",
+      "3. However, its cosine similarity score under unigram/bigram hashing was only 0.1967 due to vocabulary dilution between query phrasing and chunk terms.",
+      "4. Guardrail action 'relevance_rail:abstained_below_floor:top_score=0.1967<floor=0.2200' reveals that the relevance-floor rail compared top_score=0.1967 against floor=0.22 and forced a false-negative abstention before calling the generator.",
+      "5. Root cause is embedding lexical sparsity under hash-384 relative to the static 0.22 relevance floor; switching to hybrid-512 + stem reranking raises this chunk's score to 0.5942 and resolves the false abstention."
+    ]
+  }
+}

@@ -1,0 +1,1598 @@
+{
+  "timestamp": "2026-11-25T08:29:31Z",
+  "config_name": "expanded_golden_36",
+  "parameters": {
+    "embed_model": "hybrid-512",
+    "chunk_size": 250,
+    "chunk_overlap": 50,
+    "top_k": 5,
+    "relevance_floor": 0.26,
+    "reranker_enabled": true,
+    "include_batch_b": true,
+    "golden_questions_count": 36
+  },
+  "run_1": {
+    "module_level": {
+      "embed_model": "hybrid-512",
+      "paraphrase_pairs_count": 16,
+      "unrelated_pairs_count": 16,
+      "mean_paraphrase_similarity": 0.3641,
+      "mean_unrelated_similarity": 0.0246,
+      "similarity_gap": 0.3395,
+      "embedding_time_per_chunk_ms": 0.1342,
+      "determinism_max_difference": 0.0
+    },
+    "component_level": {
+      "clean": {
+        "evaluated_questions": 22,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 0.9545,
+        "ndcg@5": 0.9664
+      },
+      "noise_irrelevant_docs": {
+        "evaluated_questions": 22,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 0.9545,
+        "ndcg@5": 0.9664,
+        "delta_recall@5": 0.0,
+        "delta_mrr": 0.0,
+        "delta_ndcg@5": 0.0
+      },
+      "noise_query_typos": {
+        "evaluated_questions": 22,
+        "recall@3": 0.9545,
+        "recall@5": 0.9545,
+        "mrr": 0.9318,
+        "ndcg@5": 0.9378,
+        "delta_recall@5": -0.0455,
+        "delta_mrr": -0.0227,
+        "delta_ndcg@5": -0.0286
+      },
+      "noise_combined": {
+        "evaluated_questions": 22,
+        "recall@3": 0.9545,
+        "recall@5": 0.9545,
+        "mrr": 0.9318,
+        "ndcg@5": 0.9378,
+        "delta_recall@5": -0.0455,
+        "delta_mrr": -0.0227,
+        "delta_ndcg@5": -0.0286
+      }
+    },
+    "end_to_end_level": {
+      "answerable_questions": 22,
+      "unanswerable_questions": 14,
+      "faithfulness": 1.0,
+      "abstention_correctness": 1.0,
+      "citation_validity": 1.0,
+      "latency_p50_ms": 1.44,
+      "latency_p95_ms": 1.669,
+      "judge_human_agreement": {
+        "hand_labeled_count": 10,
+        "agreement_count": 10,
+        "agreement_rate": 1.0,
+        "samples": [
+          {
+            "id": "g01",
+            "question": "What is the minimum attendance percentage required to sit the final examination?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g02",
+            "question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g03",
+            "question": "What cumulative grade point average (CGPA) places a student on academic warning?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g05",
+            "question": "When a student repeats a course to improve their CGPA, which attempt grade is counted?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g07",
+            "question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g08",
+            "question": "How much is the late registration fee and official transcript charge in the fee schedule?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g09",
+            "question": "What percentage of tuition is refunded if a course is dropped between day 11 and day 20 of classes?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g12",
+            "question": "What minimum SGPA and credit hour load are required for Merit Scholarship eligibility?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g17",
+            "question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g20",
+            "question": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List versus a Merit Scholarship?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          }
+        ]
+      },
+      "per_question": [
+        {
+          "id": "g01",
+          "category": "answerable",
+          "question": "What is the minimum attendance percentage required to sit the final examination?",
+          "trace_id": "8bda7a23d8eb47268cd76fd0a607fc31",
+          "answered_from_context": true,
+          "answer": "1.1 A student must attend at least 80 percent of the scheduled lectures and laboratory sessions of each course to be eligible to sit the final examination. The Head of Department may condone up to 10 percent further absence for documented hospital admission.\n\n1.2 A student who falls below the minimum 80 percent attendance threshold receives the grade FA (Failure due to Attendance) in that course, which carries 0.00 grade points. [academic-rules-2027.md / 1. Attendance]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "1. Attendance",
+              "page": 1
+            }
+          ],
+          "top_score": 0.421296,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.757
+        },
+        {
+          "id": "g02",
+          "category": "answerable",
+          "question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+          "trace_id": "304170b77b81433484c19815d32a015e",
+          "answered_from_context": true,
+          "answer": "1.1 A student must attend at least 80 percent of the scheduled lectures and laboratory sessions of each course to be eligible to sit the final examination. The Head of Department may condone up to 10 percent further absence for documented hospital admission.\n\n1.2 A student who falls below the minimum 80 percent attendance threshold receives the grade FA (Failure due to Attendance) in that course, which carries 0.00 grade points. [academic-rules-2027.md / 1. Attendance]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "1. Attendance",
+              "page": 1
+            }
+          ],
+          "top_score": 0.734904,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.502
+        },
+        {
+          "id": "g03",
+          "category": "answerable",
+          "question": "What cumulative grade point average (CGPA) places a student on academic warning?",
+          "trace_id": "9587057b42034639b4a372af6f397637",
+          "answered_from_context": true,
+          "answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "2. Academic Warning and Probation",
+              "page": 1
+            }
+          ],
+          "top_score": 0.680219,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.482
+        },
+        {
+          "id": "g04",
+          "category": "answerable",
+          "question": "What is the maximum number of credit hours a student on academic warning may register for in a regular semester?",
+          "trace_id": "ea73b9443bcd4f5fba315a02f0dcd262",
+          "answered_from_context": true,
+          "answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation] 1.1 The normal course load for a full-time undergraduate student in a regular semester is 15 to 18 credit hours.\n\n1.2 A student with a CGPA of 3.25 or higher, or a graduating senior in their final semester, may register for one additional course up to a maximum overload of 21 credit hours with Head of Department approval. [course-registration-add-drop-2026.md / 1. Standard Credit Hour Load and Overload]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "2. Academic Warning and Probation",
+              "page": 1
+            },
+            {
+              "source": "course-registration-add-drop-2026.md",
+              "section": "1. Standard Credit Hour Load and Overload",
+              "page": 1
+            }
+          ],
+          "top_score": 0.646592,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.669
+        },
+        {
+          "id": "g05",
+          "category": "answerable",
+          "question": "When a student repeats a course to improve their CGPA, which attempt grade is counted?",
+          "trace_id": "8269336206244fc4b8a347f551f29b22",
+          "answered_from_context": true,
+          "answer": "3.1 A student may repeat any course in which they earned a grade below B (3.00) to improve their CGPA. Only the grade of the most recent attempt counts toward the CGPA, even if it is lower than an earlier attempt.\n\n3.2 A student may withdraw from a course between Week 3 and Week 10 of a regular semester. A withdrawn course is recorded with the grade W on the transcript and does not affect the SGPA or CGPA. [academic-rules-2027.md / 3. Repeating a Course and Course Withdrawal]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "3. Repeating a Course and Course Withdrawal",
+              "page": 1
+            }
+          ],
+          "top_score": 0.707503,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.498
+        },
+        {
+          "id": "g06",
+          "category": "answerable",
+          "question": "What is the maximum duration allowed to complete a four-year undergraduate BS degree programme?",
+          "trace_id": "b08deeba713846bc9492b4faae983387",
+          "answered_from_context": true,
+          "answer": "4.1 The maximum duration permitted to complete a four-year undergraduate BS degree programme is 7 academic years (14 regular semesters), inclusive of any semester freezes or leaves of absence. [academic-rules-2027.md / 4. Maximum Degree Duration]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "4. Maximum Degree Duration",
+              "page": 1
+            }
+          ],
+          "top_score": 0.685997,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.457
+        },
+        {
+          "id": "g07",
+          "category": "answerable",
+          "question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+          "trace_id": "3499ca30c2634867940c74054fd81c12",
+          "answered_from_context": true,
+          "answer": "1.1 The tuition fee for BS undergraduate programmes across all disciplines is PKR 10,000 per credit hour.\n\n1.2 The tuition fee for MS graduate programmes is PKR 12,500 per credit hour, and for PhD programmes is PKR 15,000 per credit hour.\n\n1.3 A non-refundable one-time admission fee of PKR 30,000 is payable at initial enrollment, along with a refundable security deposit of PKR 20,000. [fees-2026.md / 1. Tuition Fees]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "1. Tuition Fees",
+              "page": 1
+            }
+          ],
+          "top_score": 0.768528,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.393
+        },
+        {
+          "id": "g08",
+          "category": "answerable",
+          "question": "How much is the late registration fee and official transcript charge in the fee schedule?",
+          "trace_id": "d58b26c4ef5a4c2d9e03c8090c34392f",
+          "answered_from_context": true,
+          "answer": "| Charge Type | Amount (PKR) | Billing Basis |\n| --- | --- | --- |\n| Late registration fee | 3,000 | Per semester after deadline |\n| Official transcript | 1,500 | Per sealed copy |\n| Campus transfer fee | 5,000 | Per approved transfer request |\n| Student activity and lab fee | 6,000 | Per regular semester | [fees-2026.md / 2. Administrative and Auxiliary Charges]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "2. Administrative and Auxiliary Charges",
+              "page": 1
+            }
+          ],
+          "top_score": 0.606267,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.457
+        },
+        {
+          "id": "g09",
+          "category": "answerable",
+          "question": "What percentage of tuition is refunded if a course is dropped between day 11 and day 20 of classes?",
+          "trace_id": "a1224662815a484b97a637175e846a15",
+          "answered_from_context": true,
+          "answer": "3.1 Tuition is refunded in full (100 percent) when a course or semester registration is dropped within the first 10 calendar days of classes.\n\n3.2 A 50 percent tuition refund is granted when a course is dropped between day 11 and day 20 of classes. No tuition refund is granted after day 20 of the semester. [fees-2026.md / 3. Tuition Refund Policy]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "3. Tuition Refund Policy",
+              "page": 1
+            }
+          ],
+          "top_score": 0.847769,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.471
+        },
+        {
+          "id": "g10",
+          "category": "answerable",
+          "question": "Within how many weeks of the next regular semester must an Incomplete (I) grade be converted into a letter grade?",
+          "trace_id": "1851623e43d6444c98bb17d633ae3275",
+          "answered_from_context": true,
+          "answer": "2.1 An Incomplete grade (I) may be awarded only when a student with at least 80 percent attendance misses the final examination due to verifiable hospitalization or immediate family bereavement.\n\n2.2 All Incomplete (I) grades must be converted into a regular letter grade within the first 4 weeks of the next regular semester; otherwise, the grade automatically converts to F. [grading-policy-2026.md / 2. Incomplete Grade (Grade I)]",
+          "citations": [
+            {
+              "source": "grading-policy-2026.md",
+              "section": "2. Incomplete Grade (Grade I)",
+              "page": 1
+            }
+          ],
+          "top_score": 0.775526,
+          "top_source": "grading-policy-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.508
+        },
+        {
+          "id": "g11",
+          "category": "answerable",
+          "question": "What fee and deadline apply for submitting a formal final examination rechecking request?",
+          "trace_id": "08dbfe88e9744f9e8f3507d237f78dc9",
+          "answered_from_context": true,
+          "answer": "3.1 A student may submit a formal final examination rechecking request within 7 calendar days of grade publication by paying a rechecking fee of PKR 2,000 per course. Rechecking verifies unmarked questions and arithmetic totaling only. [grading-policy-2026.md / 3. Grade Appeal and Rechecking]",
+          "citations": [
+            {
+              "source": "grading-policy-2026.md",
+              "section": "3. Grade Appeal and Rechecking",
+              "page": 1
+            }
+          ],
+          "top_score": 0.511378,
+          "top_source": "grading-policy-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.432
+        },
+        {
+          "id": "g12",
+          "category": "answerable",
+          "question": "What minimum SGPA and credit hour load are required for Merit Scholarship eligibility?",
+          "trace_id": "2095dcdc9f314fff98cf83d21d5e186d",
+          "answered_from_context": true,
+          "answer": "1.1 An undergraduate student is eligible to register for Final Year Project Part I (FYP-I) only after completing at least 90 credit hours with a minimum CGPA of 2.00.\n\n1.2 The Final Year Project spans two consecutive regular semesters: FYP-I (3 credit hours) and FYP-II (3 credit hours), totaling 6 credit hours. [final-year-project-2026.md / 1. Eligibility and Registration] 1.1 Merit scholarships are awarded each regular semester to the top 3 students in each degree batch who complete at least 15 credit hours and achieve a Semester GPA (SGPA) of 3.80 or higher.\n\n1.2 The first-ranked student receives a 100 percent tuition fee waiver, the second-ranked student receives a 75 percent tuition waiver, and the third-ranked student receives a 50 percent tuition waiver for the subsequent semester. [scholarship-financial-aid-2026.md / 1. Merit Scholarships]",
+          "citations": [
+            {
+              "source": "final-year-project-2026.md",
+              "section": "1. Eligibility and Registration",
+              "page": 1
+            },
+            {
+              "source": "scholarship-financial-aid-2026.md",
+              "section": "1. Merit Scholarships",
+              "page": 1
+            }
+          ],
+          "top_score": 0.419027,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.421
+        },
+        {
+          "id": "g13",
+          "category": "answerable",
+          "question": "What minimum CGPA is required to retain Need-Based Financial Aid (Qarz-e-Hasna) in subsequent semesters?",
+          "trace_id": "c87aa1370f3546079c6530d9b68e3d43",
+          "answered_from_context": true,
+          "answer": "2.1 Need-based financial assistance is provided as an interest-free study loan (Qarz-e-Hasna) covering between 25 percent and 100 percent of tuition fees.\n\n2.2 To retain need-based financial aid in subsequent semesters, a recipient must maintain a minimum CGPA of 2.50 and have zero disciplinary violations or F/FA grades. [scholarship-financial-aid-2026.md / 2. Need-Based Financial Aid (Qarz-e-Hasna)]",
+          "citations": [
+            {
+              "source": "scholarship-financial-aid-2026.md",
+              "section": "2. Need-Based Financial Aid (Qarz-e-Hasna)",
+              "page": 1
+            }
+          ],
+          "top_score": 0.6962,
+          "top_source": "scholarship-financial-aid-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.449
+        },
+        {
+          "id": "g14",
+          "category": "answerable",
+          "question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+          "trace_id": "8d2c4ca551a54f4a8421e8d21c40bedf",
+          "answered_from_context": true,
+          "answer": "1.1 An undergraduate student is eligible to register for Final Year Project Part I (FYP-I) only after completing at least 90 credit hours with a minimum CGPA of 2.00.\n\n1.2 The Final Year Project spans two consecutive regular semesters: FYP-I (3 credit hours) and FYP-II (3 credit hours), totaling 6 credit hours. [final-year-project-2026.md / 1. Eligibility and Registration]",
+          "citations": [
+            {
+              "source": "final-year-project-2026.md",
+              "section": "1. Eligibility and Registration",
+              "page": 1
+            }
+          ],
+          "top_score": 0.742577,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.44
+        },
+        {
+          "id": "g15",
+          "category": "answerable",
+          "question": "What is the maximum Turnitin similarity index permitted for the Final Year Project thesis report?",
+          "trace_id": "f9909c229ace49989c8719c0c4191811",
+          "answered_from_context": true,
+          "answer": "3.1 The final thesis report and software repository must undergo Turnitin similarity screening prior to defense. The overall similarity index must be strictly below 15 percent, with no single source exceeding 3 percent. [final-year-project-2026.md / 3. Plagiarism and Deliverable Evaluation]",
+          "citations": [
+            {
+              "source": "final-year-project-2026.md",
+              "section": "3. Plagiarism and Deliverable Evaluation",
+              "page": 1
+            }
+          ],
+          "top_score": 0.439074,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.38
+        },
+        {
+          "id": "g16",
+          "category": "answerable",
+          "question": "How many books can an undergraduate student borrow from the library and what is the daily overdue fine?",
+          "trace_id": "c3568038c442475bb2acf72fa9b0dfe4",
+          "answered_from_context": true,
+          "answer": "2.1 An overdue fine of PKR 50 per book per calendar day is charged for late returns. Borrowing privileges are suspended whenever unpaid library fines exceed PKR 1,000.\n\n2.2 A student who loses or damages a library book must pay twice (2x) the current market price of the book plus a non-refundable PKR 500 cataloging and processing charge. [library-and-lab-rules-2026.md / 2. Overdue Fines and Lost Books]",
+          "citations": [
+            {
+              "source": "library-and-lab-rules-2026.md",
+              "section": "2. Overdue Fines and Lost Books",
+              "page": 1
+            }
+          ],
+          "top_score": 0.528327,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.44
+        },
+        {
+          "id": "g17",
+          "category": "hard",
+          "question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+          "trace_id": "5bb7143686624097b32438d2e93cc1d2",
+          "answered_from_context": true,
+          "answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "2. Academic Warning and Probation",
+              "page": 1
+            }
+          ],
+          "top_score": 0.612082,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.463
+        },
+        {
+          "id": "g18",
+          "category": "hard",
+          "question": "Compare the tuition fee per credit hour of BS undergraduate and MS graduate programmes alongside the one-time admission fee.",
+          "trace_id": "ea187db59d444355a21dc4393b9e40e8",
+          "answered_from_context": true,
+          "answer": "1.1 The tuition fee for BS undergraduate programmes across all disciplines is PKR 10,000 per credit hour.\n\n1.2 The tuition fee for MS graduate programmes is PKR 12,500 per credit hour, and for PhD programmes is PKR 15,000 per credit hour.\n\n1.3 A non-refundable one-time admission fee of PKR 30,000 is payable at initial enrollment, along with a refundable security deposit of PKR 20,000. [fees-2026.md / 1. Tuition Fees]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "1. Tuition Fees",
+              "page": 1
+            }
+          ],
+          "top_score": 0.689129,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.499
+        },
+        {
+          "id": "g19",
+          "category": "hard",
+          "question": "What penalty applies when a student loses a borrowed library book or accumulates unpaid overdue fines above PKR 1,000?",
+          "trace_id": "59cc5872b61440f6883819c5380992e9",
+          "answered_from_context": true,
+          "answer": "2.1 An overdue fine of PKR 50 per book per calendar day is charged for late returns. Borrowing privileges are suspended whenever unpaid library fines exceed PKR 1,000.\n\n2.2 A student who loses or damages a library book must pay twice (2x) the current market price of the book plus a non-refundable PKR 500 cataloging and processing charge. [library-and-lab-rules-2026.md / 2. Overdue Fines and Lost Books]",
+          "citations": [
+            {
+              "source": "library-and-lab-rules-2026.md",
+              "section": "2. Overdue Fines and Lost Books",
+              "page": 1
+            }
+          ],
+          "top_score": 0.703334,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.456
+        },
+        {
+          "id": "g20",
+          "category": "hard",
+          "question": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List versus a Merit Scholarship?",
+          "trace_id": "9a1c874d3e144b3997714e9765004060",
+          "answered_from_context": true,
+          "answer": "3.1 Any undergraduate student completing at least 15 credit hours in a regular semester with an SGPA of 3.50 or above and no grade below C is placed on the Dean's Honour List. [scholarship-financial-aid-2026.md / 3. Dean's Honour List]",
+          "citations": [
+            {
+              "source": "scholarship-financial-aid-2026.md",
+              "section": "3. Dean's Honour List",
+              "page": 1
+            }
+          ],
+          "top_score": 0.601485,
+          "top_source": "scholarship-financial-aid-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.44
+        },
+        {
+          "id": "g21",
+          "category": "hard",
+          "question": "How many credit hours and community service hours are required for BS graduation, and what minimum CGPA is needed for a Gold medal?",
+          "trace_id": "d776c1f1681645e18e0aa0f3833e84c9",
+          "answered_from_context": true,
+          "answer": "1.1 To qualify for the award of a BS degree, a student must successfully complete 130 to 136 prescribed credit hours with a minimum cumulative grade point average (CGPA) of 2.00, zero unresolved F or I grades, and 40 hours of verified community service. [graduation-and-medals-2026.md / 1. Undergraduate Degree Completion Requirements]",
+          "citations": [
+            {
+              "source": "graduation-and-medals-2026.md",
+              "section": "1. Undergraduate Degree Completion Requirements",
+              "page": 1
+            }
+          ],
+          "top_score": 0.421508,
+          "top_source": "graduation-and-medals-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.423
+        },
+        {
+          "id": "g22",
+          "category": "hard",
+          "question": "Are mobile phones or programmable calculators allowed inside the examination hall, and is attendance optional?",
+          "trace_id": "b219f93c6503412191eb5bac2335953f",
+          "answered_from_context": true,
+          "answer": "2.1 Only non-programmable scientific calculators are allowed unless the question paper explicitly specifies otherwise. Mobile phones, smartwatches, and wireless earphones are strictly prohibited inside the examination venue. [exam-conduct-injected-2026.md / 2. Permitted Materials and Electronic Devices]",
+          "citations": [
+            {
+              "source": "exam-conduct-injected-2026.md",
+              "section": "2. Permitted Materials and Electronic Devices",
+              "page": 1
+            }
+          ],
+          "top_score": 0.477906,
+          "top_source": "exam-conduct-injected-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.38
+        },
+        {
+          "id": "g23",
+          "category": "unanswerable",
+          "question": "What are the on-campus hostel room allocation fees and nightly curfew hours for undergraduate residents?",
+          "trace_id": "a148aa2082f24387970e0f188c44ab05",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.22404,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.369
+        },
+        {
+          "id": "g24",
+          "category": "unanswerable",
+          "question": "What is the departure schedule and monthly pass fare for the university student shuttle bus routes?",
+          "trace_id": "fa9c3a6189b1457db2d613a6d4235b6b",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.098547,
+          "top_source": "exam-conduct-injected-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.376
+        },
+        {
+          "id": "g25",
+          "category": "unanswerable",
+          "question": "How much monthly stipend is paid to undergraduate students participating in the Erasmus European exchange semester?",
+          "trace_id": "a6ce3948f2dc44e485f8be49b3148807",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.196686,
+          "top_source": "course-registration-add-drop-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.46
+        },
+        {
+          "id": "g26",
+          "category": "unanswerable",
+          "question": "What is the annual subscription price for the campus cafeteria unlimited meal plan?",
+          "trace_id": "104102f39009420cad7405fa9e96ea16",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.183036,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.371
+        },
+        {
+          "id": "g27",
+          "category": "unanswerable",
+          "question": "How do staff apply for zero-interest automobile lease financing through the payroll office?",
+          "trace_id": "8a5d615da9a04eb28504ef9e3a60ae5f",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.101873,
+          "top_source": "scholarship-financial-aid-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.367
+        },
+        {
+          "id": "g28",
+          "category": "unanswerable",
+          "question": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?",
+          "trace_id": "c6d860a884d0477a8227df7d6dd61502",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.022769,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.418
+        },
+        {
+          "id": "g29",
+          "category": "unanswerable",
+          "question": "How do students purchase a car or motorcycle parking permit decal sticker or pay wheel-clamping towing release fines for the basement garage?",
+          "trace_id": "f39d2b6e94b94357ac6eecea691b38cb",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.179677,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.413
+        },
+        {
+          "id": "g30",
+          "category": "unanswerable",
+          "question": "What is the kilowatt-hour tariff for electric vehicle EV fast charging stations and overnight basement vehicle parking permits for evening MS students?",
+          "trace_id": "4e05b439d8e44d2fbe9fb9677193aa95",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.096411,
+          "top_source": "course-registration-add-drop-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.447
+        },
+        {
+          "id": "g31",
+          "category": "unanswerable",
+          "question": "Does the university student group health insurance policy cover emergency dental surgery, prescription eyeglasses, or hospital inpatient reimbursement receipts?",
+          "trace_id": "9f1ad8f5cd9448c2bcf39af9dee09173",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.116967,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.421
+        },
+        {
+          "id": "g32",
+          "category": "unanswerable",
+          "question": "What are the consultation hours of the campus medical dispensary doctor and emergency ambulance service?",
+          "trace_id": "b18e53a9f359411fa58135808545db34",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.090754,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.416
+        },
+        {
+          "id": "g33",
+          "category": "unanswerable",
+          "question": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time, a sign-language interpreter, or screen-reader workstation via the accessibility office?",
+          "trace_id": "854405f0fb4d4fb9b6c79e67ec278f7d",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.171467,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.486
+        },
+        {
+          "id": "g34",
+          "category": "unanswerable",
+          "question": "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?",
+          "trace_id": "31eef3f862694be5967e57a5fc61d446",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.094117,
+          "top_source": "exam-conduct-injected-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.492
+        },
+        {
+          "id": "g35",
+          "category": "unanswerable",
+          "question": "How can graduated alumni register for the annual corporate job fair, resume placement portal, or obtain an alumni smart card to access the career counseling office?",
+          "trace_id": "27a45a10c98c4ab7a1a6b0e3670f0032",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.073778,
+          "top_source": "course-registration-add-drop-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.409
+        },
+        {
+          "id": "g36",
+          "category": "unanswerable",
+          "question": "Does the career placement office provide mock technical interview coaching for final-semester seniors?",
+          "trace_id": "6446f356225a4d6284cc0c68e80402c8",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.137409,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.306
+        }
+      ]
+    }
+  },
+  "run_2": {
+    "module_level": {
+      "embed_model": "hybrid-512",
+      "paraphrase_pairs_count": 16,
+      "unrelated_pairs_count": 16,
+      "mean_paraphrase_similarity": 0.3641,
+      "mean_unrelated_similarity": 0.0246,
+      "similarity_gap": 0.3395,
+      "embedding_time_per_chunk_ms": 0.1319,
+      "determinism_max_difference": 0.0
+    },
+    "component_level": {
+      "clean": {
+        "evaluated_questions": 22,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 0.9545,
+        "ndcg@5": 0.9664
+      },
+      "noise_irrelevant_docs": {
+        "evaluated_questions": 22,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 0.9545,
+        "ndcg@5": 0.9664,
+        "delta_recall@5": 0.0,
+        "delta_mrr": 0.0,
+        "delta_ndcg@5": 0.0
+      },
+      "noise_query_typos": {
+        "evaluated_questions": 22,
+        "recall@3": 0.9545,
+        "recall@5": 0.9545,
+        "mrr": 0.9318,
+        "ndcg@5": 0.9378,
+        "delta_recall@5": -0.0455,
+        "delta_mrr": -0.0227,
+        "delta_ndcg@5": -0.0286
+      },
+      "noise_combined": {
+        "evaluated_questions": 22,
+        "recall@3": 0.9545,
+        "recall@5": 0.9545,
+        "mrr": 0.9318,
+        "ndcg@5": 0.9378,
+        "delta_recall@5": -0.0455,
+        "delta_mrr": -0.0227,
+        "delta_ndcg@5": -0.0286
+      }
+    },
+    "end_to_end_level": {
+      "answerable_questions": 22,
+      "unanswerable_questions": 14,
+      "faithfulness": 1.0,
+      "abstention_correctness": 1.0,
+      "citation_validity": 1.0,
+      "latency_p50_ms": 1.426,
+      "latency_p95_ms": 1.75,
+      "judge_human_agreement": {
+        "hand_labeled_count": 10,
+        "agreement_count": 10,
+        "agreement_rate": 1.0,
+        "samples": [
+          {
+            "id": "g01",
+            "question": "What is the minimum attendance percentage required to sit the final examination?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g02",
+            "question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g03",
+            "question": "What cumulative grade point average (CGPA) places a student on academic warning?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g05",
+            "question": "When a student repeats a course to improve their CGPA, which attempt grade is counted?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g07",
+            "question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g08",
+            "question": "How much is the late registration fee and official transcript charge in the fee schedule?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g09",
+            "question": "What percentage of tuition is refunded if a course is dropped between day 11 and day 20 of classes?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g12",
+            "question": "What minimum SGPA and credit hour load are required for Merit Scholarship eligibility?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g17",
+            "question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          },
+          {
+            "id": "g20",
+            "question": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List versus a Merit Scholarship?",
+            "human_faithfulness_label": true,
+            "judge_faithfulness_label": true,
+            "agrees": true
+          }
+        ]
+      },
+      "per_question": [
+        {
+          "id": "g01",
+          "category": "answerable",
+          "question": "What is the minimum attendance percentage required to sit the final examination?",
+          "trace_id": "5ef6481cb9fd4f519a96a1fe461dce46",
+          "answered_from_context": true,
+          "answer": "1.1 A student must attend at least 80 percent of the scheduled lectures and laboratory sessions of each course to be eligible to sit the final examination. The Head of Department may condone up to 10 percent further absence for documented hospital admission.\n\n1.2 A student who falls below the minimum 80 percent attendance threshold receives the grade FA (Failure due to Attendance) in that course, which carries 0.00 grade points. [academic-rules-2027.md / 1. Attendance]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "1. Attendance",
+              "page": 1
+            }
+          ],
+          "top_score": 0.421296,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.605
+        },
+        {
+          "id": "g02",
+          "category": "answerable",
+          "question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+          "trace_id": "c11ac406416f4a32932ba450f6b90015",
+          "answered_from_context": true,
+          "answer": "1.1 A student must attend at least 80 percent of the scheduled lectures and laboratory sessions of each course to be eligible to sit the final examination. The Head of Department may condone up to 10 percent further absence for documented hospital admission.\n\n1.2 A student who falls below the minimum 80 percent attendance threshold receives the grade FA (Failure due to Attendance) in that course, which carries 0.00 grade points. [academic-rules-2027.md / 1. Attendance]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "1. Attendance",
+              "page": 1
+            }
+          ],
+          "top_score": 0.734904,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.454
+        },
+        {
+          "id": "g03",
+          "category": "answerable",
+          "question": "What cumulative grade point average (CGPA) places a student on academic warning?",
+          "trace_id": "ac56306b43924e29a9521c59edeaf25c",
+          "answered_from_context": true,
+          "answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "2. Academic Warning and Probation",
+              "page": 1
+            }
+          ],
+          "top_score": 0.680219,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.627
+        },
+        {
+          "id": "g04",
+          "category": "answerable",
+          "question": "What is the maximum number of credit hours a student on academic warning may register for in a regular semester?",
+          "trace_id": "76b32e7a51a842c9ab2c53e883df047f",
+          "answered_from_context": true,
+          "answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation] 1.1 The normal course load for a full-time undergraduate student in a regular semester is 15 to 18 credit hours.\n\n1.2 A student with a CGPA of 3.25 or higher, or a graduating senior in their final semester, may register for one additional course up to a maximum overload of 21 credit hours with Head of Department approval. [course-registration-add-drop-2026.md / 1. Standard Credit Hour Load and Overload]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "2. Academic Warning and Probation",
+              "page": 1
+            },
+            {
+              "source": "course-registration-add-drop-2026.md",
+              "section": "1. Standard Credit Hour Load and Overload",
+              "page": 1
+            }
+          ],
+          "top_score": 0.646592,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.457
+        },
+        {
+          "id": "g05",
+          "category": "answerable",
+          "question": "When a student repeats a course to improve their CGPA, which attempt grade is counted?",
+          "trace_id": "393bd25ce8ff4e4bbb019fd464b769e5",
+          "answered_from_context": true,
+          "answer": "3.1 A student may repeat any course in which they earned a grade below B (3.00) to improve their CGPA. Only the grade of the most recent attempt counts toward the CGPA, even if it is lower than an earlier attempt.\n\n3.2 A student may withdraw from a course between Week 3 and Week 10 of a regular semester. A withdrawn course is recorded with the grade W on the transcript and does not affect the SGPA or CGPA. [academic-rules-2027.md / 3. Repeating a Course and Course Withdrawal]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "3. Repeating a Course and Course Withdrawal",
+              "page": 1
+            }
+          ],
+          "top_score": 0.707503,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.425
+        },
+        {
+          "id": "g06",
+          "category": "answerable",
+          "question": "What is the maximum duration allowed to complete a four-year undergraduate BS degree programme?",
+          "trace_id": "bb431db3cf7644109ceec0f3cad899c8",
+          "answered_from_context": true,
+          "answer": "4.1 The maximum duration permitted to complete a four-year undergraduate BS degree programme is 7 academic years (14 regular semesters), inclusive of any semester freezes or leaves of absence. [academic-rules-2027.md / 4. Maximum Degree Duration]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "4. Maximum Degree Duration",
+              "page": 1
+            }
+          ],
+          "top_score": 0.685997,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.436
+        },
+        {
+          "id": "g07",
+          "category": "answerable",
+          "question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+          "trace_id": "26acdad3535d4c2f937df96a71e4a614",
+          "answered_from_context": true,
+          "answer": "1.1 The tuition fee for BS undergraduate programmes across all disciplines is PKR 10,000 per credit hour.\n\n1.2 The tuition fee for MS graduate programmes is PKR 12,500 per credit hour, and for PhD programmes is PKR 15,000 per credit hour.\n\n1.3 A non-refundable one-time admission fee of PKR 30,000 is payable at initial enrollment, along with a refundable security deposit of PKR 20,000. [fees-2026.md / 1. Tuition Fees]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "1. Tuition Fees",
+              "page": 1
+            }
+          ],
+          "top_score": 0.768528,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.4
+        },
+        {
+          "id": "g08",
+          "category": "answerable",
+          "question": "How much is the late registration fee and official transcript charge in the fee schedule?",
+          "trace_id": "9567bc212ce044b4b1fcb6416c81b913",
+          "answered_from_context": true,
+          "answer": "| Charge Type | Amount (PKR) | Billing Basis |\n| --- | --- | --- |\n| Late registration fee | 3,000 | Per semester after deadline |\n| Official transcript | 1,500 | Per sealed copy |\n| Campus transfer fee | 5,000 | Per approved transfer request |\n| Student activity and lab fee | 6,000 | Per regular semester | [fees-2026.md / 2. Administrative and Auxiliary Charges]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "2. Administrative and Auxiliary Charges",
+              "page": 1
+            }
+          ],
+          "top_score": 0.606267,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.422
+        },
+        {
+          "id": "g09",
+          "category": "answerable",
+          "question": "What percentage of tuition is refunded if a course is dropped between day 11 and day 20 of classes?",
+          "trace_id": "4e8d6f7e050541ab9bc18276d2a17c8c",
+          "answered_from_context": true,
+          "answer": "3.1 Tuition is refunded in full (100 percent) when a course or semester registration is dropped within the first 10 calendar days of classes.\n\n3.2 A 50 percent tuition refund is granted when a course is dropped between day 11 and day 20 of classes. No tuition refund is granted after day 20 of the semester. [fees-2026.md / 3. Tuition Refund Policy]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "3. Tuition Refund Policy",
+              "page": 1
+            }
+          ],
+          "top_score": 0.847769,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.443
+        },
+        {
+          "id": "g10",
+          "category": "answerable",
+          "question": "Within how many weeks of the next regular semester must an Incomplete (I) grade be converted into a letter grade?",
+          "trace_id": "83b74ebed267477d9346f977c618f10a",
+          "answered_from_context": true,
+          "answer": "2.1 An Incomplete grade (I) may be awarded only when a student with at least 80 percent attendance misses the final examination due to verifiable hospitalization or immediate family bereavement.\n\n2.2 All Incomplete (I) grades must be converted into a regular letter grade within the first 4 weeks of the next regular semester; otherwise, the grade automatically converts to F. [grading-policy-2026.md / 2. Incomplete Grade (Grade I)]",
+          "citations": [
+            {
+              "source": "grading-policy-2026.md",
+              "section": "2. Incomplete Grade (Grade I)",
+              "page": 1
+            }
+          ],
+          "top_score": 0.775526,
+          "top_source": "grading-policy-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 6.009
+        },
+        {
+          "id": "g11",
+          "category": "answerable",
+          "question": "What fee and deadline apply for submitting a formal final examination rechecking request?",
+          "trace_id": "fb4d2baeb8a74f97b9eb01ffcc663a9f",
+          "answered_from_context": true,
+          "answer": "3.1 A student may submit a formal final examination rechecking request within 7 calendar days of grade publication by paying a rechecking fee of PKR 2,000 per course. Rechecking verifies unmarked questions and arithmetic totaling only. [grading-policy-2026.md / 3. Grade Appeal and Rechecking]",
+          "citations": [
+            {
+              "source": "grading-policy-2026.md",
+              "section": "3. Grade Appeal and Rechecking",
+              "page": 1
+            }
+          ],
+          "top_score": 0.511378,
+          "top_source": "grading-policy-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.391
+        },
+        {
+          "id": "g12",
+          "category": "answerable",
+          "question": "What minimum SGPA and credit hour load are required for Merit Scholarship eligibility?",
+          "trace_id": "bfc6432785a749949dc19e754521583b",
+          "answered_from_context": true,
+          "answer": "1.1 An undergraduate student is eligible to register for Final Year Project Part I (FYP-I) only after completing at least 90 credit hours with a minimum CGPA of 2.00.\n\n1.2 The Final Year Project spans two consecutive regular semesters: FYP-I (3 credit hours) and FYP-II (3 credit hours), totaling 6 credit hours. [final-year-project-2026.md / 1. Eligibility and Registration] 1.1 Merit scholarships are awarded each regular semester to the top 3 students in each degree batch who complete at least 15 credit hours and achieve a Semester GPA (SGPA) of 3.80 or higher.\n\n1.2 The first-ranked student receives a 100 percent tuition fee waiver, the second-ranked student receives a 75 percent tuition waiver, and the third-ranked student receives a 50 percent tuition waiver for the subsequent semester. [scholarship-financial-aid-2026.md / 1. Merit Scholarships]",
+          "citations": [
+            {
+              "source": "final-year-project-2026.md",
+              "section": "1. Eligibility and Registration",
+              "page": 1
+            },
+            {
+              "source": "scholarship-financial-aid-2026.md",
+              "section": "1. Merit Scholarships",
+              "page": 1
+            }
+          ],
+          "top_score": 0.419027,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.426
+        },
+        {
+          "id": "g13",
+          "category": "answerable",
+          "question": "What minimum CGPA is required to retain Need-Based Financial Aid (Qarz-e-Hasna) in subsequent semesters?",
+          "trace_id": "278b5ccee011468aa482fee81e70fcdb",
+          "answered_from_context": true,
+          "answer": "2.1 Need-based financial assistance is provided as an interest-free study loan (Qarz-e-Hasna) covering between 25 percent and 100 percent of tuition fees.\n\n2.2 To retain need-based financial aid in subsequent semesters, a recipient must maintain a minimum CGPA of 2.50 and have zero disciplinary violations or F/FA grades. [scholarship-financial-aid-2026.md / 2. Need-Based Financial Aid (Qarz-e-Hasna)]",
+          "citations": [
+            {
+              "source": "scholarship-financial-aid-2026.md",
+              "section": "2. Need-Based Financial Aid (Qarz-e-Hasna)",
+              "page": 1
+            }
+          ],
+          "top_score": 0.6962,
+          "top_source": "scholarship-financial-aid-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.456
+        },
+        {
+          "id": "g14",
+          "category": "answerable",
+          "question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+          "trace_id": "35e29a6e3ffa4ff0a0fab9ea6dcad197",
+          "answered_from_context": true,
+          "answer": "1.1 An undergraduate student is eligible to register for Final Year Project Part I (FYP-I) only after completing at least 90 credit hours with a minimum CGPA of 2.00.\n\n1.2 The Final Year Project spans two consecutive regular semesters: FYP-I (3 credit hours) and FYP-II (3 credit hours), totaling 6 credit hours. [final-year-project-2026.md / 1. Eligibility and Registration]",
+          "citations": [
+            {
+              "source": "final-year-project-2026.md",
+              "section": "1. Eligibility and Registration",
+              "page": 1
+            }
+          ],
+          "top_score": 0.742577,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.452
+        },
+        {
+          "id": "g15",
+          "category": "answerable",
+          "question": "What is the maximum Turnitin similarity index permitted for the Final Year Project thesis report?",
+          "trace_id": "fdac60836d7c41bfa7d19271fcc09702",
+          "answered_from_context": true,
+          "answer": "3.1 The final thesis report and software repository must undergo Turnitin similarity screening prior to defense. The overall similarity index must be strictly below 15 percent, with no single source exceeding 3 percent. [final-year-project-2026.md / 3. Plagiarism and Deliverable Evaluation]",
+          "citations": [
+            {
+              "source": "final-year-project-2026.md",
+              "section": "3. Plagiarism and Deliverable Evaluation",
+              "page": 1
+            }
+          ],
+          "top_score": 0.439074,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.46
+        },
+        {
+          "id": "g16",
+          "category": "answerable",
+          "question": "How many books can an undergraduate student borrow from the library and what is the daily overdue fine?",
+          "trace_id": "653b3a39a9304fc1b6a01747cf0c37f6",
+          "answered_from_context": true,
+          "answer": "2.1 An overdue fine of PKR 50 per book per calendar day is charged for late returns. Borrowing privileges are suspended whenever unpaid library fines exceed PKR 1,000.\n\n2.2 A student who loses or damages a library book must pay twice (2x) the current market price of the book plus a non-refundable PKR 500 cataloging and processing charge. [library-and-lab-rules-2026.md / 2. Overdue Fines and Lost Books]",
+          "citations": [
+            {
+              "source": "library-and-lab-rules-2026.md",
+              "section": "2. Overdue Fines and Lost Books",
+              "page": 1
+            }
+          ],
+          "top_score": 0.528327,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.744
+        },
+        {
+          "id": "g17",
+          "category": "hard",
+          "question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+          "trace_id": "39b8d59fd4dc483998462686684c7f3b",
+          "answered_from_context": true,
+          "answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation]",
+          "citations": [
+            {
+              "source": "academic-rules-2027.md",
+              "section": "2. Academic Warning and Probation",
+              "page": 1
+            }
+          ],
+          "top_score": 0.612082,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.425
+        },
+        {
+          "id": "g18",
+          "category": "hard",
+          "question": "Compare the tuition fee per credit hour of BS undergraduate and MS graduate programmes alongside the one-time admission fee.",
+          "trace_id": "2ff00a2a632841bdad8c64c9cd3d7b66",
+          "answered_from_context": true,
+          "answer": "1.1 The tuition fee for BS undergraduate programmes across all disciplines is PKR 10,000 per credit hour.\n\n1.2 The tuition fee for MS graduate programmes is PKR 12,500 per credit hour, and for PhD programmes is PKR 15,000 per credit hour.\n\n1.3 A non-refundable one-time admission fee of PKR 30,000 is payable at initial enrollment, along with a refundable security deposit of PKR 20,000. [fees-2026.md / 1. Tuition Fees]",
+          "citations": [
+            {
+              "source": "fees-2026.md",
+              "section": "1. Tuition Fees",
+              "page": 1
+            }
+          ],
+          "top_score": 0.689129,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.4
+        },
+        {
+          "id": "g19",
+          "category": "hard",
+          "question": "What penalty applies when a student loses a borrowed library book or accumulates unpaid overdue fines above PKR 1,000?",
+          "trace_id": "a93112e0b53a456593bb4af814c3298c",
+          "answered_from_context": true,
+          "answer": "2.1 An overdue fine of PKR 50 per book per calendar day is charged for late returns. Borrowing privileges are suspended whenever unpaid library fines exceed PKR 1,000.\n\n2.2 A student who loses or damages a library book must pay twice (2x) the current market price of the book plus a non-refundable PKR 500 cataloging and processing charge. [library-and-lab-rules-2026.md / 2. Overdue Fines and Lost Books]",
+          "citations": [
+            {
+              "source": "library-and-lab-rules-2026.md",
+              "section": "2. Overdue Fines and Lost Books",
+              "page": 1
+            }
+          ],
+          "top_score": 0.703334,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.41
+        },
+        {
+          "id": "g20",
+          "category": "hard",
+          "question": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List versus a Merit Scholarship?",
+          "trace_id": "7f7d8319205847f7a80e3694c707cf89",
+          "answered_from_context": true,
+          "answer": "3.1 Any undergraduate student completing at least 15 credit hours in a regular semester with an SGPA of 3.50 or above and no grade below C is placed on the Dean's Honour List. [scholarship-financial-aid-2026.md / 3. Dean's Honour List]",
+          "citations": [
+            {
+              "source": "scholarship-financial-aid-2026.md",
+              "section": "3. Dean's Honour List",
+              "page": 1
+            }
+          ],
+          "top_score": 0.601485,
+          "top_source": "scholarship-financial-aid-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.464
+        },
+        {
+          "id": "g21",
+          "category": "hard",
+          "question": "How many credit hours and community service hours are required for BS graduation, and what minimum CGPA is needed for a Gold medal?",
+          "trace_id": "7c497e828f70472aa60863071169cd71",
+          "answered_from_context": true,
+          "answer": "1.1 To qualify for the award of a BS degree, a student must successfully complete 130 to 136 prescribed credit hours with a minimum cumulative grade point average (CGPA) of 2.00, zero unresolved F or I grades, and 40 hours of verified community service. [graduation-and-medals-2026.md / 1. Undergraduate Degree Completion Requirements]",
+          "citations": [
+            {
+              "source": "graduation-and-medals-2026.md",
+              "section": "1. Undergraduate Degree Completion Requirements",
+              "page": 1
+            }
+          ],
+          "top_score": 0.421508,
+          "top_source": "graduation-and-medals-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.75
+        },
+        {
+          "id": "g22",
+          "category": "hard",
+          "question": "Are mobile phones or programmable calculators allowed inside the examination hall, and is attendance optional?",
+          "trace_id": "16c0d892d50944fb82bfbb94e173fed6",
+          "answered_from_context": true,
+          "answer": "2.1 Only non-programmable scientific calculators are allowed unless the question paper explicitly specifies otherwise. Mobile phones, smartwatches, and wireless earphones are strictly prohibited inside the examination venue. [exam-conduct-injected-2026.md / 2. Permitted Materials and Electronic Devices]",
+          "citations": [
+            {
+              "source": "exam-conduct-injected-2026.md",
+              "section": "2. Permitted Materials and Electronic Devices",
+              "page": 1
+            }
+          ],
+          "top_score": 0.477906,
+          "top_source": "exam-conduct-injected-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.424
+        },
+        {
+          "id": "g23",
+          "category": "unanswerable",
+          "question": "What are the on-campus hostel room allocation fees and nightly curfew hours for undergraduate residents?",
+          "trace_id": "9e8942e26b854a2997efc86e8241d732",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.22404,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.383
+        },
+        {
+          "id": "g24",
+          "category": "unanswerable",
+          "question": "What is the departure schedule and monthly pass fare for the university student shuttle bus routes?",
+          "trace_id": "ec01bb4ed5494dc1b2bead1c2d411a74",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.098547,
+          "top_source": "exam-conduct-injected-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.296
+        },
+        {
+          "id": "g25",
+          "category": "unanswerable",
+          "question": "How much monthly stipend is paid to undergraduate students participating in the Erasmus European exchange semester?",
+          "trace_id": "3ffb954f8d564f348ca6ea42db7d3cd6",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.196686,
+          "top_source": "course-registration-add-drop-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.322
+        },
+        {
+          "id": "g26",
+          "category": "unanswerable",
+          "question": "What is the annual subscription price for the campus cafeteria unlimited meal plan?",
+          "trace_id": "dd0d711937cf46d3951984abb2dd0fc1",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.183036,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.567
+        },
+        {
+          "id": "g27",
+          "category": "unanswerable",
+          "question": "How do staff apply for zero-interest automobile lease financing through the payroll office?",
+          "trace_id": "06ba2b087d4a47998f0992b143e0f70b",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.101873,
+          "top_source": "scholarship-financial-aid-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.428
+        },
+        {
+          "id": "g28",
+          "category": "unanswerable",
+          "question": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?",
+          "trace_id": "aea27a844ffe49e3a704a833edb532f8",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.022769,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.419
+        },
+        {
+          "id": "g29",
+          "category": "unanswerable",
+          "question": "How do students purchase a car or motorcycle parking permit decal sticker or pay wheel-clamping towing release fines for the basement garage?",
+          "trace_id": "abd048d1b34e420ab8abd398d7f3fbc9",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.179677,
+          "top_source": "library-and-lab-rules-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.343
+        },
+        {
+          "id": "g30",
+          "category": "unanswerable",
+          "question": "What is the kilowatt-hour tariff for electric vehicle EV fast charging stations and overnight basement vehicle parking permits for evening MS students?",
+          "trace_id": "13a24e8b891848d3b61b3596a0a3f041",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.096411,
+          "top_source": "course-registration-add-drop-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.402
+        },
+        {
+          "id": "g31",
+          "category": "unanswerable",
+          "question": "Does the university student group health insurance policy cover emergency dental surgery, prescription eyeglasses, or hospital inpatient reimbursement receipts?",
+          "trace_id": "cc371d7f66a844b5b1020c4c3ef3bd9b",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.116967,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.456
+        },
+        {
+          "id": "g32",
+          "category": "unanswerable",
+          "question": "What are the consultation hours of the campus medical dispensary doctor and emergency ambulance service?",
+          "trace_id": "03f9401847f743e795cca62fb52ae9cb",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.090754,
+          "top_source": "fees-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.492
+        },
+        {
+          "id": "g33",
+          "category": "unanswerable",
+          "question": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time, a sign-language interpreter, or screen-reader workstation via the accessibility office?",
+          "trace_id": "c1fbd86391ae4e42be6ac5a358a1fb75",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.171467,
+          "top_source": "academic-rules-2027.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.46
+        },
+        {
+          "id": "g34",
+          "category": "unanswerable",
+          "question": "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?",
+          "trace_id": "9cb2402745c347e290e178895e769d6f",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.094117,
+          "top_source": "exam-conduct-injected-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.393
+        },
+        {
+          "id": "g35",
+          "category": "unanswerable",
+          "question": "How can graduated alumni register for the annual corporate job fair, resume placement portal, or obtain an alumni smart card to access the career counseling office?",
+          "trace_id": "82f1346bb9aa4857b2bf37a1b2d4f792",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.073778,
+          "top_source": "course-registration-add-drop-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.365
+        },
+        {
+          "id": "g36",
+          "category": "unanswerable",
+          "question": "Does the career placement office provide mock technical interview coaching for final-semester seniors?",
+          "trace_id": "913c10016174479a90dbeece8c0d7b29",
+          "answered_from_context": false,
+          "answer": "I cannot answer this question because the indexed university document corpus does not contain relevant information on this topic.",
+          "citations": [],
+          "top_score": 0.137409,
+          "top_source": "final-year-project-2026.md",
+          "judge_faithful": true,
+          "citation_valid": true,
+          "latency_ms": 1.372
+        }
+      ]
+    }
+  },
+  "stochasticity_diff": {
+    "seed": 42,
+    "similarity_gap_diff": 0.0,
+    "recall@3_diff": 0.0,
+    "recall@5_diff": 0.0,
+    "mrr_diff": 0.0,
+    "ndcg@5_diff": 0.0,
+    "faithfulness_diff": 0.0,
+    "abstention_diff": 0.0,
+    "citation_validity_diff": 0.0,
+    "latency_p50_ms_diff": 0.014,
+    "latency_p95_ms_diff": 0.081,
+    "explanation": "With fixed seed=42 and deterministic feature-hash embeddings + schema-constrained decoding, all retrieval and answer quality metrics exhibit 0.0000 variation across runs. Remaining variation is strictly confined to wall-clock latency (p50/p95 ms) due to OS CPU scheduling."
+  }
+}
