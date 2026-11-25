@@ -1,0 +1,89 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ragops-ingest
+  namespace: rahbar
+  labels:
+    app: indexer
+spec:
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        app: indexer
+    spec:
+      serviceAccountName: rahbar-indexer-sa
+      automountServiceAccountToken: false
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: indexer
+          image: rahbar-indexer:ragops-v1
+          imagePullPolicy: IfNotPresent
+          command:
+            - "python"
+            - "-c"
+            - |
+              import os, shutil
+              from pathlib import Path
+              from dataclasses import replace
+              from pipeline.config import get_settings
+              from pipeline.run import run_verified_incremental_pipeline
+
+              data_dir = Path("/data")
+              for sub in ("data_lake", "quarantine", "archive", "reports", "eval_results", "traces"):
+                  d = data_dir / sub
+                  if sub in ("data_lake", "quarantine", "archive") and d.exists():
+                      shutil.rmtree(d)
+                  d.mkdir(parents=True, exist_ok=True)
+
+              s = replace(get_settings(), data_dir="/data", embed_model="hash-384", collection="rahbar", chunk_size=300, chunk_overlap=50)
+              print("=== [K8S JOB: INGEST BATCH A (BASELINE)] ===", flush=True)
+              run_verified_incremental_pipeline(replace(s, corpus_dir="/app/corpus/batch_a"), report_out="/data/reports/batch_a_report.json")
+              print("=== [K8S JOB: RE-RUN UNCHANGED BATCH A (0 CHUNKS EMBEDDED)] ===", flush=True)
+              run_verified_incremental_pipeline(replace(s, corpus_dir="/app/corpus/batch_a"), report_out="/data/reports/batch_a_unchanged_report.json")
+              print("=== [K8S JOB: INGEST BATCH B (WITH PLANTED PROBLEMS & VERSION SUPERSEDING)] ===", flush=True)
+              run_verified_incremental_pipeline(replace(s, corpus_dir="/app/corpus/batch_b"), report_out="/data/reports/batch_b_report.json")
+
+              # Also build candidate collection rahbar_candidate with hybrid-512 (chunk_size=250, overlap=50)
+              cand_dl = Path("/tmp/cand_datalake")
+              if cand_dl.exists():
+                  shutil.rmtree(cand_dl)
+              sc = replace(s, data_dir=str(cand_dl), embed_model="hybrid-512", collection="rahbar_candidate", chunk_size=250, chunk_overlap=50)
+              print("=== [K8S JOB: INDEX CANDIDATE COLLECTION rahbar_candidate (hybrid-512)] ===", flush=True)
+              run_verified_incremental_pipeline(replace(sc, corpus_dir="/app/corpus/batch_a"), print_table=False)
+              run_verified_incremental_pipeline(replace(sc, corpus_dir="/app/corpus/batch_b"), print_table=False)
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1024Mi"
+          volumeMounts:
+            - name: ragops-data
+              mountPath: /data
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: ragops-data
+          persistentVolumeClaim:
+            claimName: ragops-data-pvc
+        - name: tmp
+          emptyDir: {}
