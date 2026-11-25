@@ -1,0 +1,42 @@
+{"id": "lq01", "domain": "in_domain", "topic": "attendance", "query": "What percentage of classes must I attend to sit the final exam?"}
+{"id": "lq02", "domain": "in_domain", "topic": "attendance", "query": "What grade do I get if my attendance falls below 80 percent?"}
+{"id": "lq03", "domain": "in_domain", "topic": "academic_warning", "query": "Below what CGPA is a student placed on academic warning?"}
+{"id": "lq04", "domain": "in_domain", "topic": "academic_warning", "query": "How many credit hours can I take while on academic warning?"}
+{"id": "lq05", "domain": "in_domain", "topic": "academic_warning", "query": "After how many consecutive semesters on academic warning is a student dropped from the programme?"}
+{"id": "lq06", "domain": "in_domain", "topic": "course_repeat", "query": "If I repeat a course to improve my CGPA, which attempt grade counts?"}
+{"id": "lq07", "domain": "in_domain", "topic": "degree_duration", "query": "What is the maximum number of years allowed to complete a 4-year BS degree?"}
+{"id": "lq08", "domain": "in_domain", "topic": "tuition_fees", "query": "How much is the tuition fee per credit hour for BS undergraduate programmes?"}
+{"id": "lq09", "domain": "in_domain", "topic": "tuition_fees", "query": "Compare BS and MS tuition fees per credit hour and the admission fee."}
+{"id": "lq10", "domain": "in_domain", "topic": "auxiliary_fees", "query": "What is the late registration fee and official transcript copy fee?"}
+{"id": "lq11", "domain": "in_domain", "topic": "tuition_refund", "query": "What percentage of tuition is refunded if I drop a course between day 11 and day 20?"}
+{"id": "lq12", "domain": "in_domain", "topic": "grading_incomplete", "query": "Within how many weeks of the next semester must an Incomplete (I) grade be resolved?"}
+{"id": "lq13", "domain": "in_domain", "topic": "grade_rechecking", "query": "What is the fee and deadline for submitting a final exam rechecking request?"}
+{"id": "lq14", "domain": "in_domain", "topic": "merit_scholarship", "query": "What minimum SGPA and credit hours are required for Merit Scholarship eligibility?"}
+{"id": "lq15", "domain": "in_domain", "topic": "financial_aid", "query": "What minimum CGPA is needed to retain Need-Based Financial Aid Qarz-e-Hasna?"}
+{"id": "lq16", "domain": "in_domain", "topic": "deans_list", "query": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List?"}
+{"id": "lq17", "domain": "in_domain", "topic": "fyp_eligibility", "query": "How many credit hours and what CGPA are needed to register for Final Year Project Part I (FYP-I)?"}
+{"id": "lq18", "domain": "in_domain", "topic": "fyp_plagiarism", "query": "What is the maximum Turnitin similarity index allowed for the FYP thesis report?"}
+{"id": "lq19", "domain": "in_domain", "topic": "library_borrowing", "query": "How many books can an undergraduate borrow from the library and what is the daily overdue fine?"}
+{"id": "lq20", "domain": "in_domain", "topic": "library_penalties", "query": "What penalty applies if a student loses a borrowed library book or has overdue fines over PKR 1,000?"}
+{"id": "lq21", "domain": "in_domain", "topic": "graduation_medals", "query": "How many credit hours and community service hours are required for BS graduation and a Gold medal?"}
+{"id": "lq22", "domain": "in_domain", "topic": "exam_conduct", "query": "Are mobile phones or programmable calculators allowed inside the examination hall?"}
+{"id": "lq23", "domain": "in_domain", "topic": "hostel_absent", "query": "What are the on-campus hostel room allocation fees and nightly curfew hours?"}
+{"id": "lq24", "domain": "in_domain", "topic": "shuttle_absent", "query": "What is the departure schedule and monthly pass fare for student shuttle bus routes?"}
+{"id": "lq25", "domain": "in_domain", "topic": "cafeteria_absent", "query": "What is the annual subscription price for the campus cafeteria unlimited meal plan?"}
+{"id": "lq26", "domain": "in_domain", "topic": "car_loan_absent", "query": "How do staff apply for zero-interest automobile lease financing through the payroll office?"}
+{"id": "lq27", "domain": "in_domain", "topic": "pool_absent", "query": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?"}
+{"id": "lq28", "domain": "in_domain", "topic": "attendance", "query": "What is the minimum attendance percentage required for final examination eligibility?"}
+{"id": "lq29", "domain": "in_domain", "topic": "tuition_fees", "query": "What is the BS tuition fee per credit hour in the fee schedule?"}
+{"id": "lq30", "domain": "uncovered", "topic": "Parking Permits & EV Charging", "query": "How do I purchase a student motorcycle or car parking decal sticker for the basement garage?"}
+{"id": "lq31", "domain": "uncovered", "topic": "Parking Permits & EV Charging", "query": "What is the kilowatt-hour tariff for using the electric vehicle EV fast charging stations in Parking Lot B?"}
+{"id": "lq32", "domain": "uncovered", "topic": "Parking Permits & EV Charging", "query": "How much is the wheel-clamping towing release fine for parking in a faculty reserved bay?"}
+{"id": "lq33", "domain": "uncovered", "topic": "Parking Permits & EV Charging", "query": "Can evening MS students obtain an overnight basement vehicle parking permit sticker?"}
+{"id": "lq34", "domain": "uncovered", "topic": "Student Health Insurance & Clinic", "query": "Does the university group health insurance policy cover emergency dental surgery and prescription eyeglasses?"}
+{"id": "lq35", "domain": "uncovered", "topic": "Student Health Insurance & Clinic", "query": "What are the consultation hours of the campus medical dispensary doctor and ambulance service?"}
+{"id": "lq36", "domain": "uncovered", "topic": "Student Health Insurance & Clinic", "query": "How do I submit hospital inpatient reimbursement receipts under the student medical insurance plan?"}
+{"id": "lq37", "domain": "uncovered", "topic": "Disability & Special Accommodations", "query": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time?"}
+{"id": "lq38", "domain": "uncovered", "topic": "Disability & Special Accommodations", "query": "What is the procedure for requesting a sign-language interpreter or screen-reader workstation via the accessibility office?"}
+{"id": "lq39", "domain": "uncovered", "topic": "Disability & Special Accommodations", "query": "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?"}
+{"id": "lq40", "domain": "uncovered", "topic": "Alumni Career & Placement Portal", "query": "How can graduated alumni register for the annual corporate job fair and resume placement portal?"}
+{"id": "lq41", "domain": "uncovered", "topic": "Alumni Career & Placement Portal", "query": "What is the procedure for obtaining an alumni smart card to access the career counseling office after graduation?"}
+{"id": "lq42", "domain": "uncovered", "topic": "Alumni Career & Placement Portal", "query": "Does the career placement office provide mock technical interview coaching for final-semester seniors?"}
