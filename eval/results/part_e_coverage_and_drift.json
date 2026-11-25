@@ -1,0 +1,849 @@
+{
+  "e2_coverage_before": {
+    "total_live_queries": 42,
+    "golden_set_size": 28,
+    "similarity_threshold": 0.42,
+    "min_coverage_share_target": 0.85,
+    "covered_count": 29,
+    "uncovered_count": 13,
+    "coverage_share": 0.6905,
+    "coverage_percent": 69.05,
+    "coverage_gate_status": "FAIL (GAP FLAGGED)",
+    "uncovered_topics_grouped": {
+      "Parking Permits & EV Charging": [
+        "How do I purchase a student motorcycle or car parking decal sticker for the basement garage?",
+        "What is the kilowatt-hour tariff for using the electric vehicle EV fast charging stations in Parking Lot B?",
+        "How much is the wheel-clamping towing release fine for parking in a faculty reserved bay?",
+        "Can evening MS students obtain an overnight basement vehicle parking permit sticker?"
+      ],
+      "Student Health Insurance & Clinic": [
+        "Does the university group health insurance policy cover emergency dental surgery and prescription eyeglasses?",
+        "What are the consultation hours of the campus medical dispensary doctor and ambulance service?",
+        "How do I submit hospital inpatient reimbursement receipts under the student medical insurance plan?"
+      ],
+      "Disability & Special Accommodations": [
+        "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time?",
+        "What is the procedure for requesting a sign-language interpreter or screen-reader workstation via the accessibility office?",
+        "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?"
+      ],
+      "Alumni Career & Placement Portal": [
+        "How can graduated alumni register for the annual corporate job fair and resume placement portal?",
+        "What is the procedure for obtaining an alumni smart card to access the career counseling office after graduation?",
+        "Does the career placement office provide mock technical interview coaching for final-semester seniors?"
+      ]
+    },
+    "uncovered_queries": [
+      {
+        "live_id": "lq30",
+        "query": "How do I purchase a student motorcycle or car parking decal sticker for the basement garage?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g14",
+        "most_similar_golden_question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+        "max_similarity": 0.1595,
+        "covered": false
+      },
+      {
+        "live_id": "lq31",
+        "query": "What is the kilowatt-hour tariff for using the electric vehicle EV fast charging stations in Parking Lot B?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g21",
+        "most_similar_golden_question": "How many credit hours and community service hours are required for BS graduation, and what minimum CGPA is needed for a Gold medal?",
+        "max_similarity": 0.0887,
+        "covered": false
+      },
+      {
+        "live_id": "lq32",
+        "query": "How much is the wheel-clamping towing release fine for parking in a faculty reserved bay?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g16",
+        "most_similar_golden_question": "How many books can an undergraduate student borrow from the library and what is the daily overdue fine?",
+        "max_similarity": 0.1646,
+        "covered": false
+      },
+      {
+        "live_id": "lq33",
+        "query": "Can evening MS students obtain an overnight basement vehicle parking permit sticker?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g19",
+        "most_similar_golden_question": "What penalty applies when a student loses a borrowed library book or accumulates unpaid overdue fines above PKR 1,000?",
+        "max_similarity": 0.1431,
+        "covered": false
+      },
+      {
+        "live_id": "lq34",
+        "query": "Does the university group health insurance policy cover emergency dental surgery and prescription eyeglasses?",
+        "topic": "Student Health Insurance & Clinic",
+        "most_similar_golden_id": "g24",
+        "most_similar_golden_question": "What is the departure schedule and monthly pass fare for the university student shuttle bus routes?",
+        "max_similarity": 0.1025,
+        "covered": false
+      },
+      {
+        "live_id": "lq35",
+        "query": "What are the consultation hours of the campus medical dispensary doctor and ambulance service?",
+        "topic": "Student Health Insurance & Clinic",
+        "most_similar_golden_id": "g21",
+        "most_similar_golden_question": "How many credit hours and community service hours are required for BS graduation, and what minimum CGPA is needed for a Gold medal?",
+        "max_similarity": 0.1945,
+        "covered": false
+      },
+      {
+        "live_id": "lq36",
+        "query": "How do I submit hospital inpatient reimbursement receipts under the student medical insurance plan?",
+        "topic": "Student Health Insurance & Clinic",
+        "most_similar_golden_id": "g14",
+        "most_similar_golden_question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+        "max_similarity": 0.1309,
+        "covered": false
+      },
+      {
+        "live_id": "lq37",
+        "query": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time?",
+        "topic": "Disability & Special Accommodations",
+        "most_similar_golden_id": "g02",
+        "most_similar_golden_question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+        "max_similarity": 0.1637,
+        "covered": false
+      },
+      {
+        "live_id": "lq38",
+        "query": "What is the procedure for requesting a sign-language interpreter or screen-reader workstation via the accessibility office?",
+        "topic": "Disability & Special Accommodations",
+        "most_similar_golden_id": "g11",
+        "most_similar_golden_question": "What fee and deadline apply for submitting a formal final examination rechecking request?",
+        "max_similarity": 0.0851,
+        "covered": false
+      },
+      {
+        "live_id": "lq39",
+        "query": "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?",
+        "topic": "Disability & Special Accommodations",
+        "most_similar_golden_id": "g18",
+        "most_similar_golden_question": "Compare the tuition fee per credit hour of BS undergraduate and MS graduate programmes alongside the one-time admission fee.",
+        "max_similarity": 0.0578,
+        "covered": false
+      },
+      {
+        "live_id": "lq40",
+        "query": "How can graduated alumni register for the annual corporate job fair and resume placement portal?",
+        "topic": "Alumni Career & Placement Portal",
+        "most_similar_golden_id": "g14",
+        "most_similar_golden_question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+        "max_similarity": 0.154,
+        "covered": false
+      },
+      {
+        "live_id": "lq41",
+        "query": "What is the procedure for obtaining an alumni smart card to access the career counseling office after graduation?",
+        "topic": "Alumni Career & Placement Portal",
+        "most_similar_golden_id": "g17",
+        "most_similar_golden_question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+        "max_similarity": 0.1025,
+        "covered": false
+      },
+      {
+        "live_id": "lq42",
+        "query": "Does the career placement office provide mock technical interview coaching for final-semester seniors?",
+        "topic": "Alumni Career & Placement Portal",
+        "most_similar_golden_id": "g17",
+        "most_similar_golden_question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+        "max_similarity": 0.1372,
+        "covered": false
+      }
+    ],
+    "covered_queries": [
+      {
+        "live_id": "lq01",
+        "query": "What percentage of classes must I attend to sit the final exam?",
+        "topic": "attendance",
+        "most_similar_golden_id": "g01",
+        "most_similar_golden_question": "What is the minimum attendance percentage required to sit the final examination?",
+        "max_similarity": 0.706,
+        "covered": true
+      },
+      {
+        "live_id": "lq02",
+        "query": "What grade do I get if my attendance falls below 80 percent?",
+        "topic": "attendance",
+        "most_similar_golden_id": "g02",
+        "most_similar_golden_question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+        "max_similarity": 0.6273,
+        "covered": true
+      },
+      {
+        "live_id": "lq03",
+        "query": "Below what CGPA is a student placed on academic warning?",
+        "topic": "academic_warning",
+        "most_similar_golden_id": "g03",
+        "most_similar_golden_question": "What cumulative grade point average (CGPA) places a student on academic warning?",
+        "max_similarity": 0.6637,
+        "covered": true
+      },
+      {
+        "live_id": "lq04",
+        "query": "How many credit hours can I take while on academic warning?",
+        "topic": "academic_warning",
+        "most_similar_golden_id": "g04",
+        "most_similar_golden_question": "What is the maximum number of credit hours a student on academic warning may register for in a regular semester?",
+        "max_similarity": 0.5868,
+        "covered": true
+      },
+      {
+        "live_id": "lq05",
+        "query": "After how many consecutive semesters on academic warning is a student dropped from the programme?",
+        "topic": "academic_warning",
+        "most_similar_golden_id": "g17",
+        "most_similar_golden_question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+        "max_similarity": 0.7951,
+        "covered": true
+      },
+      {
+        "live_id": "lq06",
+        "query": "If I repeat a course to improve my CGPA, which attempt grade counts?",
+        "topic": "course_repeat",
+        "most_similar_golden_id": "g05",
+        "most_similar_golden_question": "When a student repeats a course to improve their CGPA, which attempt grade is counted?",
+        "max_similarity": 0.8302,
+        "covered": true
+      },
+      {
+        "live_id": "lq07",
+        "query": "What is the maximum number of years allowed to complete a 4-year BS degree?",
+        "topic": "degree_duration",
+        "most_similar_golden_id": "g06",
+        "most_similar_golden_question": "What is the maximum duration allowed to complete a four-year undergraduate BS degree programme?",
+        "max_similarity": 0.6501,
+        "covered": true
+      },
+      {
+        "live_id": "lq08",
+        "query": "How much is the tuition fee per credit hour for BS undergraduate programmes?",
+        "topic": "tuition_fees",
+        "most_similar_golden_id": "g07",
+        "most_similar_golden_question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq09",
+        "query": "Compare BS and MS tuition fees per credit hour and the admission fee.",
+        "topic": "tuition_fees",
+        "most_similar_golden_id": "g18",
+        "most_similar_golden_question": "Compare the tuition fee per credit hour of BS undergraduate and MS graduate programmes alongside the one-time admission fee.",
+        "max_similarity": 0.8642,
+        "covered": true
+      },
+      {
+        "live_id": "lq10",
+        "query": "What is the late registration fee and official transcript copy fee?",
+        "topic": "auxiliary_fees",
+        "most_similar_golden_id": "g08",
+        "most_similar_golden_question": "How much is the late registration fee and official transcript charge in the fee schedule?",
+        "max_similarity": 0.8298,
+        "covered": true
+      },
+      {
+        "live_id": "lq11",
+        "query": "What percentage of tuition is refunded if I drop a course between day 11 and day 20?",
+        "topic": "tuition_refund",
+        "most_similar_golden_id": "g09",
+        "most_similar_golden_question": "What percentage of tuition is refunded if a course is dropped between day 11 and day 20 of classes?",
+        "max_similarity": 0.8356,
+        "covered": true
+      },
+      {
+        "live_id": "lq12",
+        "query": "Within how many weeks of the next semester must an Incomplete (I) grade be resolved?",
+        "topic": "grading_incomplete",
+        "most_similar_golden_id": "g10",
+        "most_similar_golden_question": "Within how many weeks of the next regular semester must an Incomplete (I) grade be converted into a letter grade?",
+        "max_similarity": 0.776,
+        "covered": true
+      },
+      {
+        "live_id": "lq13",
+        "query": "What is the fee and deadline for submitting a final exam rechecking request?",
+        "topic": "grade_rechecking",
+        "most_similar_golden_id": "g11",
+        "most_similar_golden_question": "What fee and deadline apply for submitting a formal final examination rechecking request?",
+        "max_similarity": 0.8973,
+        "covered": true
+      },
+      {
+        "live_id": "lq14",
+        "query": "What minimum SGPA and credit hours are required for Merit Scholarship eligibility?",
+        "topic": "merit_scholarship",
+        "most_similar_golden_id": "g12",
+        "most_similar_golden_question": "What minimum SGPA and credit hour load are required for Merit Scholarship eligibility?",
+        "max_similarity": 0.9698,
+        "covered": true
+      },
+      {
+        "live_id": "lq15",
+        "query": "What minimum CGPA is needed to retain Need-Based Financial Aid Qarz-e-Hasna?",
+        "topic": "financial_aid",
+        "most_similar_golden_id": "g13",
+        "most_similar_golden_question": "What minimum CGPA is required to retain Need-Based Financial Aid (Qarz-e-Hasna) in subsequent semesters?",
+        "max_similarity": 0.8996,
+        "covered": true
+      },
+      {
+        "live_id": "lq16",
+        "query": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List?",
+        "topic": "deans_list",
+        "most_similar_golden_id": "g20",
+        "most_similar_golden_question": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List versus a Merit Scholarship?",
+        "max_similarity": 0.9573,
+        "covered": true
+      },
+      {
+        "live_id": "lq17",
+        "query": "How many credit hours and what CGPA are needed to register for Final Year Project Part I (FYP-I)?",
+        "topic": "fyp_eligibility",
+        "most_similar_golden_id": "g14",
+        "most_similar_golden_question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+        "max_similarity": 0.8233,
+        "covered": true
+      },
+      {
+        "live_id": "lq18",
+        "query": "What is the maximum Turnitin similarity index allowed for the FYP thesis report?",
+        "topic": "fyp_plagiarism",
+        "most_similar_golden_id": "g15",
+        "most_similar_golden_question": "What is the maximum Turnitin similarity index permitted for the Final Year Project thesis report?",
+        "max_similarity": 0.7073,
+        "covered": true
+      },
+      {
+        "live_id": "lq19",
+        "query": "How many books can an undergraduate borrow from the library and what is the daily overdue fine?",
+        "topic": "library_borrowing",
+        "most_similar_golden_id": "g16",
+        "most_similar_golden_question": "How many books can an undergraduate student borrow from the library and what is the daily overdue fine?",
+        "max_similarity": 0.9415,
+        "covered": true
+      },
+      {
+        "live_id": "lq20",
+        "query": "What penalty applies if a student loses a borrowed library book or has overdue fines over PKR 1,000?",
+        "topic": "library_penalties",
+        "most_similar_golden_id": "g19",
+        "most_similar_golden_question": "What penalty applies when a student loses a borrowed library book or accumulates unpaid overdue fines above PKR 1,000?",
+        "max_similarity": 0.8068,
+        "covered": true
+      },
+      {
+        "live_id": "lq21",
+        "query": "How many credit hours and community service hours are required for BS graduation and a Gold medal?",
+        "topic": "graduation_medals",
+        "most_similar_golden_id": "g21",
+        "most_similar_golden_question": "How many credit hours and community service hours are required for BS graduation, and what minimum CGPA is needed for a Gold medal?",
+        "max_similarity": 0.9381,
+        "covered": true
+      },
+      {
+        "live_id": "lq22",
+        "query": "Are mobile phones or programmable calculators allowed inside the examination hall?",
+        "topic": "exam_conduct",
+        "most_similar_golden_id": "g22",
+        "most_similar_golden_question": "Are mobile phones or programmable calculators allowed inside the examination hall, and is attendance optional?",
+        "max_similarity": 0.9423,
+        "covered": true
+      },
+      {
+        "live_id": "lq23",
+        "query": "What are the on-campus hostel room allocation fees and nightly curfew hours?",
+        "topic": "hostel_absent",
+        "most_similar_golden_id": "g23",
+        "most_similar_golden_question": "What are the on-campus hostel room allocation fees and nightly curfew hours for undergraduate residents?",
+        "max_similarity": 0.9314,
+        "covered": true
+      },
+      {
+        "live_id": "lq24",
+        "query": "What is the departure schedule and monthly pass fare for student shuttle bus routes?",
+        "topic": "shuttle_absent",
+        "most_similar_golden_id": "g24",
+        "most_similar_golden_question": "What is the departure schedule and monthly pass fare for the university student shuttle bus routes?",
+        "max_similarity": 0.9533,
+        "covered": true
+      },
+      {
+        "live_id": "lq25",
+        "query": "What is the annual subscription price for the campus cafeteria unlimited meal plan?",
+        "topic": "cafeteria_absent",
+        "most_similar_golden_id": "g26",
+        "most_similar_golden_question": "What is the annual subscription price for the campus cafeteria unlimited meal plan?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq26",
+        "query": "How do staff apply for zero-interest automobile lease financing through the payroll office?",
+        "topic": "car_loan_absent",
+        "most_similar_golden_id": "g27",
+        "most_similar_golden_question": "How do staff apply for zero-interest automobile lease financing through the payroll office?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq27",
+        "query": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?",
+        "topic": "pool_absent",
+        "most_similar_golden_id": "g28",
+        "most_similar_golden_question": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq28",
+        "query": "What is the minimum attendance percentage required for final examination eligibility?",
+        "topic": "attendance",
+        "most_similar_golden_id": "g01",
+        "most_similar_golden_question": "What is the minimum attendance percentage required to sit the final examination?",
+        "max_similarity": 0.807,
+        "covered": true
+      },
+      {
+        "live_id": "lq29",
+        "query": "What is the BS tuition fee per credit hour in the fee schedule?",
+        "topic": "tuition_fees",
+        "most_similar_golden_id": "g07",
+        "most_similar_golden_question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+        "max_similarity": 0.8013,
+        "covered": true
+      }
+    ]
+  },
+  "e3_data_drift": {
+    "before_batch_b": {
+      "recall@3": 0.9091,
+      "recall@5": 0.9091,
+      "mrr": 0.8636,
+      "ndcg@5": 0.8755,
+      "faithfulness": 0.9545,
+      "abstention_correctness": 1.0,
+      "citation_validity": 0.9091
+    },
+    "after_batch_b": {
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9545,
+      "ndcg@5": 0.9664,
+      "faithfulness": 1.0,
+      "abstention_correctness": 1.0,
+      "citation_validity": 1.0
+    },
+    "version_drift_example_g17": {
+      "question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+      "before_batch_b_source": "academic-rules-2026.md",
+      "before_batch_b_answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. A student who remains on academic warning for three consecutive regular semesters is dropped from the degree programme. [academic-rules-2026.md / 2. Academic Warning and Probation]",
+      "after_batch_b_source": "academic-rules-2027.md",
+      "after_batch_b_answer": "2.1 A student whose cumulative grade point average (CGPA) falls below 2.00 at the end of any regular semester is placed on academic warning.\n\n2.2 A student on academic warning may register for at most 12 credit hours in the following regular semester. Under the revised 2027 rules, a student who remains on academic warning for two consecutive regular semesters (reduced from three in 2026) is dropped from the degree programme. [academic-rules-2027.md / 2. Academic Warning and Probation]"
+    },
+    "explanation": [
+      "1. New Domain Coverage (+9.09% Recall@5 & +18.18% Citation Validity): Questions g21 (Graduation/Medals) and g22 (Exam Conduct) had no ground-truth documents in Batch A, causing 2 retrieval misses (Recall@5 = 0.9091). After ingesting Batch B, graduation-and-medals-2026.md and exam-conduct-injected-2026.md entered the index, raising Recall@5 and Citation Validity to 1.0000.",
+      "2. Policy Version Drift (g17 Academic Warning Dismissal): In Batch B, academic-rules-2027.md superseded academic-rules-2026.md. Question g17 shifted its cited source from academic-rules-2026.md ('three consecutive regular semesters') to academic-rules-2027.md ('two consecutive regular semesters').",
+      "3. Guardrail Trigger Drift: Ingesting exam-conduct-injected-2026.md caused g22 to trigger retrieval_rail:stripped_injected_instruction, proving the retrieval guardrail sanitizes poisoned chunks introduced via data drift."
+    ]
+  },
+  "e4_coverage_after": {
+    "total_live_queries": 42,
+    "golden_set_size": 36,
+    "similarity_threshold": 0.42,
+    "min_coverage_share_target": 0.85,
+    "covered_count": 42,
+    "uncovered_count": 0,
+    "coverage_share": 1.0,
+    "coverage_percent": 100.0,
+    "coverage_gate_status": "PASS",
+    "uncovered_topics_grouped": {},
+    "uncovered_queries": [],
+    "covered_queries": [
+      {
+        "live_id": "lq01",
+        "query": "What percentage of classes must I attend to sit the final exam?",
+        "topic": "attendance",
+        "most_similar_golden_id": "g01",
+        "most_similar_golden_question": "What is the minimum attendance percentage required to sit the final examination?",
+        "max_similarity": 0.706,
+        "covered": true
+      },
+      {
+        "live_id": "lq02",
+        "query": "What grade do I get if my attendance falls below 80 percent?",
+        "topic": "attendance",
+        "most_similar_golden_id": "g02",
+        "most_similar_golden_question": "What grade is awarded to a student who falls below the minimum 80 percent attendance threshold?",
+        "max_similarity": 0.6273,
+        "covered": true
+      },
+      {
+        "live_id": "lq03",
+        "query": "Below what CGPA is a student placed on academic warning?",
+        "topic": "academic_warning",
+        "most_similar_golden_id": "g03",
+        "most_similar_golden_question": "What cumulative grade point average (CGPA) places a student on academic warning?",
+        "max_similarity": 0.6637,
+        "covered": true
+      },
+      {
+        "live_id": "lq04",
+        "query": "How many credit hours can I take while on academic warning?",
+        "topic": "academic_warning",
+        "most_similar_golden_id": "g04",
+        "most_similar_golden_question": "What is the maximum number of credit hours a student on academic warning may register for in a regular semester?",
+        "max_similarity": 0.5868,
+        "covered": true
+      },
+      {
+        "live_id": "lq05",
+        "query": "After how many consecutive semesters on academic warning is a student dropped from the programme?",
+        "topic": "academic_warning",
+        "most_similar_golden_id": "g17",
+        "most_similar_golden_question": "After how many consecutive regular semesters on academic warning is a student dismissed from the degree programme?",
+        "max_similarity": 0.7951,
+        "covered": true
+      },
+      {
+        "live_id": "lq06",
+        "query": "If I repeat a course to improve my CGPA, which attempt grade counts?",
+        "topic": "course_repeat",
+        "most_similar_golden_id": "g05",
+        "most_similar_golden_question": "When a student repeats a course to improve their CGPA, which attempt grade is counted?",
+        "max_similarity": 0.8302,
+        "covered": true
+      },
+      {
+        "live_id": "lq07",
+        "query": "What is the maximum number of years allowed to complete a 4-year BS degree?",
+        "topic": "degree_duration",
+        "most_similar_golden_id": "g06",
+        "most_similar_golden_question": "What is the maximum duration allowed to complete a four-year undergraduate BS degree programme?",
+        "max_similarity": 0.6501,
+        "covered": true
+      },
+      {
+        "live_id": "lq08",
+        "query": "How much is the tuition fee per credit hour for BS undergraduate programmes?",
+        "topic": "tuition_fees",
+        "most_similar_golden_id": "g07",
+        "most_similar_golden_question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq09",
+        "query": "Compare BS and MS tuition fees per credit hour and the admission fee.",
+        "topic": "tuition_fees",
+        "most_similar_golden_id": "g18",
+        "most_similar_golden_question": "Compare the tuition fee per credit hour of BS undergraduate and MS graduate programmes alongside the one-time admission fee.",
+        "max_similarity": 0.8642,
+        "covered": true
+      },
+      {
+        "live_id": "lq10",
+        "query": "What is the late registration fee and official transcript copy fee?",
+        "topic": "auxiliary_fees",
+        "most_similar_golden_id": "g08",
+        "most_similar_golden_question": "How much is the late registration fee and official transcript charge in the fee schedule?",
+        "max_similarity": 0.8298,
+        "covered": true
+      },
+      {
+        "live_id": "lq11",
+        "query": "What percentage of tuition is refunded if I drop a course between day 11 and day 20?",
+        "topic": "tuition_refund",
+        "most_similar_golden_id": "g09",
+        "most_similar_golden_question": "What percentage of tuition is refunded if a course is dropped between day 11 and day 20 of classes?",
+        "max_similarity": 0.8356,
+        "covered": true
+      },
+      {
+        "live_id": "lq12",
+        "query": "Within how many weeks of the next semester must an Incomplete (I) grade be resolved?",
+        "topic": "grading_incomplete",
+        "most_similar_golden_id": "g10",
+        "most_similar_golden_question": "Within how many weeks of the next regular semester must an Incomplete (I) grade be converted into a letter grade?",
+        "max_similarity": 0.776,
+        "covered": true
+      },
+      {
+        "live_id": "lq13",
+        "query": "What is the fee and deadline for submitting a final exam rechecking request?",
+        "topic": "grade_rechecking",
+        "most_similar_golden_id": "g11",
+        "most_similar_golden_question": "What fee and deadline apply for submitting a formal final examination rechecking request?",
+        "max_similarity": 0.8973,
+        "covered": true
+      },
+      {
+        "live_id": "lq14",
+        "query": "What minimum SGPA and credit hours are required for Merit Scholarship eligibility?",
+        "topic": "merit_scholarship",
+        "most_similar_golden_id": "g12",
+        "most_similar_golden_question": "What minimum SGPA and credit hour load are required for Merit Scholarship eligibility?",
+        "max_similarity": 0.9698,
+        "covered": true
+      },
+      {
+        "live_id": "lq15",
+        "query": "What minimum CGPA is needed to retain Need-Based Financial Aid Qarz-e-Hasna?",
+        "topic": "financial_aid",
+        "most_similar_golden_id": "g13",
+        "most_similar_golden_question": "What minimum CGPA is required to retain Need-Based Financial Aid (Qarz-e-Hasna) in subsequent semesters?",
+        "max_similarity": 0.8996,
+        "covered": true
+      },
+      {
+        "live_id": "lq16",
+        "query": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List?",
+        "topic": "deans_list",
+        "most_similar_golden_id": "g20",
+        "most_similar_golden_question": "What SGPA threshold qualifies an undergraduate student carrying 15 credit hours for the Dean's Honour List versus a Merit Scholarship?",
+        "max_similarity": 0.9573,
+        "covered": true
+      },
+      {
+        "live_id": "lq17",
+        "query": "How many credit hours and what CGPA are needed to register for Final Year Project Part I (FYP-I)?",
+        "topic": "fyp_eligibility",
+        "most_similar_golden_id": "g14",
+        "most_similar_golden_question": "How many credit hours and what minimum CGPA must an undergraduate student complete to register for Final Year Project Part I (FYP-I)?",
+        "max_similarity": 0.8233,
+        "covered": true
+      },
+      {
+        "live_id": "lq18",
+        "query": "What is the maximum Turnitin similarity index allowed for the FYP thesis report?",
+        "topic": "fyp_plagiarism",
+        "most_similar_golden_id": "g15",
+        "most_similar_golden_question": "What is the maximum Turnitin similarity index permitted for the Final Year Project thesis report?",
+        "max_similarity": 0.7073,
+        "covered": true
+      },
+      {
+        "live_id": "lq19",
+        "query": "How many books can an undergraduate borrow from the library and what is the daily overdue fine?",
+        "topic": "library_borrowing",
+        "most_similar_golden_id": "g16",
+        "most_similar_golden_question": "How many books can an undergraduate student borrow from the library and what is the daily overdue fine?",
+        "max_similarity": 0.9415,
+        "covered": true
+      },
+      {
+        "live_id": "lq20",
+        "query": "What penalty applies if a student loses a borrowed library book or has overdue fines over PKR 1,000?",
+        "topic": "library_penalties",
+        "most_similar_golden_id": "g19",
+        "most_similar_golden_question": "What penalty applies when a student loses a borrowed library book or accumulates unpaid overdue fines above PKR 1,000?",
+        "max_similarity": 0.8068,
+        "covered": true
+      },
+      {
+        "live_id": "lq21",
+        "query": "How many credit hours and community service hours are required for BS graduation and a Gold medal?",
+        "topic": "graduation_medals",
+        "most_similar_golden_id": "g21",
+        "most_similar_golden_question": "How many credit hours and community service hours are required for BS graduation, and what minimum CGPA is needed for a Gold medal?",
+        "max_similarity": 0.9381,
+        "covered": true
+      },
+      {
+        "live_id": "lq22",
+        "query": "Are mobile phones or programmable calculators allowed inside the examination hall?",
+        "topic": "exam_conduct",
+        "most_similar_golden_id": "g22",
+        "most_similar_golden_question": "Are mobile phones or programmable calculators allowed inside the examination hall, and is attendance optional?",
+        "max_similarity": 0.9423,
+        "covered": true
+      },
+      {
+        "live_id": "lq23",
+        "query": "What are the on-campus hostel room allocation fees and nightly curfew hours?",
+        "topic": "hostel_absent",
+        "most_similar_golden_id": "g23",
+        "most_similar_golden_question": "What are the on-campus hostel room allocation fees and nightly curfew hours for undergraduate residents?",
+        "max_similarity": 0.9314,
+        "covered": true
+      },
+      {
+        "live_id": "lq24",
+        "query": "What is the departure schedule and monthly pass fare for student shuttle bus routes?",
+        "topic": "shuttle_absent",
+        "most_similar_golden_id": "g24",
+        "most_similar_golden_question": "What is the departure schedule and monthly pass fare for the university student shuttle bus routes?",
+        "max_similarity": 0.9533,
+        "covered": true
+      },
+      {
+        "live_id": "lq25",
+        "query": "What is the annual subscription price for the campus cafeteria unlimited meal plan?",
+        "topic": "cafeteria_absent",
+        "most_similar_golden_id": "g26",
+        "most_similar_golden_question": "What is the annual subscription price for the campus cafeteria unlimited meal plan?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq26",
+        "query": "How do staff apply for zero-interest automobile lease financing through the payroll office?",
+        "topic": "car_loan_absent",
+        "most_similar_golden_id": "g27",
+        "most_similar_golden_question": "How do staff apply for zero-interest automobile lease financing through the payroll office?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq27",
+        "query": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?",
+        "topic": "pool_absent",
+        "most_similar_golden_id": "g28",
+        "most_similar_golden_question": "Where can visitors buy weekend entry tickets for the Olympic swimming pool and squash courts?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq28",
+        "query": "What is the minimum attendance percentage required for final examination eligibility?",
+        "topic": "attendance",
+        "most_similar_golden_id": "g01",
+        "most_similar_golden_question": "What is the minimum attendance percentage required to sit the final examination?",
+        "max_similarity": 0.807,
+        "covered": true
+      },
+      {
+        "live_id": "lq29",
+        "query": "What is the BS tuition fee per credit hour in the fee schedule?",
+        "topic": "tuition_fees",
+        "most_similar_golden_id": "g07",
+        "most_similar_golden_question": "What is the tuition fee per credit hour for BS undergraduate programmes?",
+        "max_similarity": 0.8013,
+        "covered": true
+      },
+      {
+        "live_id": "lq30",
+        "query": "How do I purchase a student motorcycle or car parking decal sticker for the basement garage?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g29",
+        "most_similar_golden_question": "How do students purchase a car or motorcycle parking permit decal sticker or pay wheel-clamping towing release fines for the basement garage?",
+        "max_similarity": 0.7736,
+        "covered": true
+      },
+      {
+        "live_id": "lq31",
+        "query": "What is the kilowatt-hour tariff for using the electric vehicle EV fast charging stations in Parking Lot B?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g30",
+        "most_similar_golden_question": "What is the kilowatt-hour tariff for electric vehicle EV fast charging stations and overnight basement vehicle parking permits for evening MS students?",
+        "max_similarity": 0.7172,
+        "covered": true
+      },
+      {
+        "live_id": "lq32",
+        "query": "How much is the wheel-clamping towing release fine for parking in a faculty reserved bay?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g29",
+        "most_similar_golden_question": "How do students purchase a car or motorcycle parking permit decal sticker or pay wheel-clamping towing release fines for the basement garage?",
+        "max_similarity": 0.5528,
+        "covered": true
+      },
+      {
+        "live_id": "lq33",
+        "query": "Can evening MS students obtain an overnight basement vehicle parking permit sticker?",
+        "topic": "Parking Permits & EV Charging",
+        "most_similar_golden_id": "g30",
+        "most_similar_golden_question": "What is the kilowatt-hour tariff for electric vehicle EV fast charging stations and overnight basement vehicle parking permits for evening MS students?",
+        "max_similarity": 0.6904,
+        "covered": true
+      },
+      {
+        "live_id": "lq34",
+        "query": "Does the university group health insurance policy cover emergency dental surgery and prescription eyeglasses?",
+        "topic": "Student Health Insurance & Clinic",
+        "most_similar_golden_id": "g31",
+        "most_similar_golden_question": "Does the university student group health insurance policy cover emergency dental surgery, prescription eyeglasses, or hospital inpatient reimbursement receipts?",
+        "max_similarity": 0.8925,
+        "covered": true
+      },
+      {
+        "live_id": "lq35",
+        "query": "What are the consultation hours of the campus medical dispensary doctor and ambulance service?",
+        "topic": "Student Health Insurance & Clinic",
+        "most_similar_golden_id": "g32",
+        "most_similar_golden_question": "What are the consultation hours of the campus medical dispensary doctor and emergency ambulance service?",
+        "max_similarity": 0.9445,
+        "covered": true
+      },
+      {
+        "live_id": "lq36",
+        "query": "How do I submit hospital inpatient reimbursement receipts under the student medical insurance plan?",
+        "topic": "Student Health Insurance & Clinic",
+        "most_similar_golden_id": "g31",
+        "most_similar_golden_question": "Does the university student group health insurance policy cover emergency dental surgery, prescription eyeglasses, or hospital inpatient reimbursement receipts?",
+        "max_similarity": 0.4808,
+        "covered": true
+      },
+      {
+        "live_id": "lq37",
+        "query": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time?",
+        "topic": "Disability & Special Accommodations",
+        "most_similar_golden_id": "g33",
+        "most_similar_golden_question": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time, a sign-language interpreter, or screen-reader workstation via the accessibility office?",
+        "max_similarity": 0.8713,
+        "covered": true
+      },
+      {
+        "live_id": "lq38",
+        "query": "What is the procedure for requesting a sign-language interpreter or screen-reader workstation via the accessibility office?",
+        "topic": "Disability & Special Accommodations",
+        "most_similar_golden_id": "g33",
+        "most_similar_golden_question": "How do students with documented dyslexia or visual impairment request 25 percent extra examination writing time, a sign-language interpreter, or screen-reader workstation via the accessibility office?",
+        "max_similarity": 0.7702,
+        "covered": true
+      },
+      {
+        "live_id": "lq39",
+        "query": "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?",
+        "topic": "Disability & Special Accommodations",
+        "most_similar_golden_id": "g34",
+        "most_similar_golden_question": "Where do I submit a medical specialist evaluation to arrange wheelchair-accessible classroom seating?",
+        "max_similarity": 1.0,
+        "covered": true
+      },
+      {
+        "live_id": "lq40",
+        "query": "How can graduated alumni register for the annual corporate job fair and resume placement portal?",
+        "topic": "Alumni Career & Placement Portal",
+        "most_similar_golden_id": "g35",
+        "most_similar_golden_question": "How can graduated alumni register for the annual corporate job fair, resume placement portal, or obtain an alumni smart card to access the career counseling office?",
+        "max_similarity": 0.8816,
+        "covered": true
+      },
+      {
+        "live_id": "lq41",
+        "query": "What is the procedure for obtaining an alumni smart card to access the career counseling office after graduation?",
+        "topic": "Alumni Career & Placement Portal",
+        "most_similar_golden_id": "g35",
+        "most_similar_golden_question": "How can graduated alumni register for the annual corporate job fair, resume placement portal, or obtain an alumni smart card to access the career counseling office?",
+        "max_similarity": 0.6481,
+        "covered": true
+      },
+      {
+        "live_id": "lq42",
+        "query": "Does the career placement office provide mock technical interview coaching for final-semester seniors?",
+        "topic": "Alumni Career & Placement Portal",
+        "most_similar_golden_id": "g36",
+        "most_similar_golden_question": "Does the career placement office provide mock technical interview coaching for final-semester seniors?",
+        "max_similarity": 1.0,
+        "covered": true
+      }
+    ]
+  },
+  "e4_expanded_suite_metrics": {
+    "recall@5": 1.0,
+    "faithfulness": 1.0,
+    "abstention_correctness": 1.0,
+    "citation_validity": 1.0
+  }
+}
