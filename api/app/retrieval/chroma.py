@@ -136,6 +136,8 @@ class ChromaRetriever:
                     section=str(md.get("section", "Overview")),
                     page=page_val,
                     score=round(similarity, 6),
+                    doc_id=str(md.get("doc_id", md.get("source", "unknown"))),
+                    doc_version=str(md.get("doc_version", "2026")),
                 )
             )
 

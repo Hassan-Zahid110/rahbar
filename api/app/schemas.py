@@ -1,10 +1,4 @@
-"""The contracts. Change them only with your partner's review: the UI, the
-evaluation script and your tests all depend on these shapes.
-
-`Answer` is what the model must produce (section 3.4). `AskResponse` is what
-the API returns to the UI and to eval/run_eval.py. The model's `reasoning` is
-never sent to the user.
-"""
+"""The API contract (section 3.4 & RAGOps Part D)."""
 
 from __future__ import annotations
 
@@ -14,18 +8,9 @@ from pydantic import BaseModel, Field
 
 
 class AskRequest(BaseModel):
-    question: str = Field(min_length=3, max_length=500)
+    """POST /api/ask request body. Reject <3 or >500 chars with HTTP 422 (section 4.2)."""
 
-
-class Passage(BaseModel):
-    """One retrieved chunk, as the retriever hands it to the generator."""
-
-    chunk_id: str
-    text: str
-    source: str
-    section: str
-    page: int | None = None
-    score: float = Field(description="Similarity, higher is closer (1 - cosine distance).")
+    question: str = Field(..., min_length=3, max_length=500)
 
 
 class Citation(BaseModel):
@@ -35,26 +20,46 @@ class Citation(BaseModel):
 
 
 class Answer(BaseModel):
-    """The model's output contract. Send its JSON schema to the model, then validate."""
+    """The schema the LLM itself must produce (section 3.4)."""
 
-    reasoning: str
+    reasoning: str = Field(
+        default="",
+        description="Brief check of which retrieved passage answers the question, or why none does.",
+    )
     answer: str
-    citations: list[Citation]
+    citations: list[Citation] = Field(default_factory=list)
     answered_from_context: bool
     confidence: Literal["high", "medium", "low"]
 
 
+class Passage(BaseModel):
+    """What a Retriever returns for each top-k hit."""
+
+    chunk_id: str
+    text: str
+    source: str
+    section: str
+    page: int | None = None
+    score: float
+    doc_id: str = ""
+    doc_version: str = "2026"
+
+
 class RetrievedRef(BaseModel):
-    """What the response says was retrieved. eval/run_eval.py scores against this."""
+    """Metadata of a retrieved chunk, echoed in AskResponse for observability."""
 
     chunk_id: str
     source: str
     section: str
     page: int | None = None
     score: float
+    doc_id: str = ""
+    doc_version: str = "2026"
 
 
 class AskResponse(BaseModel):
+    """POST /api/ask response body."""
+
     request_id: str
     answer: str
     citations: list[Citation]
