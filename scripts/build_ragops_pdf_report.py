@@ -10,17 +10,35 @@ import sys
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.generate_report_assets import generate_all_screenshots
-
-
 def _img_data_uri(path_str: str) -> str:
     raw = Path(path_str).read_bytes()
     b64 = base64.b64encode(raw).decode("ascii")
     return f"data:image/png;base64,{b64}"
 
 
+def get_user_screenshots() -> list[dict[str, str]]:
+    ss_dir = REPO_ROOT / "docs" / "screenshots"
+    items = [
+        {"code": "A1", "title": "Part A1 — Batch A (Clean Baseline Corpus) Verification & Indexing Report", "path": str(ss_dir / "A1.png")},
+        {"code": "A2", "title": "Part A2 — Second Ingestion Run on Unchanged Corpus Showing 0 Chunks Re-Embedded", "path": str(ss_dir / "A2.png")},
+        {"code": "A3", "title": "Part A1 & A2 — Batch B Verification Report (7 Planted Defects Quarantined + Version Update + 0-Orphan Delete)", "path": str(ss_dir / "A3.png")},
+        {"code": "B1", "title": "Part B (B1–B3) — Three-Level Offline Evaluation Suite Summary (Module, Component + Noise, End-to-End)", "path": str(ss_dir / "B1.png")},
+        {"code": "B2", "title": "Part B4 — Fixed-Seed Stochasticity Verification (Seed = 42, Run 1 vs. Run 2)", "path": str(ss_dir / "B2.png")},
+        {"code": "C1", "title": "Part C2 — Release Gate Failing on Degraded Candidate (Decision: FAIL, Exit Code 1)", "path": str(ss_dir / "C1.png")},
+        {"code": "C2", "title": "Part C2 — Release Gate Passing on Hybrid-512 + Reranker Candidate (Decision: PASS, Exit Code 0)", "path": str(ss_dir / "C2.png")},
+        {"code": "D1", "title": "Part D1 & D3 — Trace Summary Across 57 Traces + One Full 16-Field JSON Trace Record", "path": str(ss_dir / "D1.png")},
+        {"code": "D2", "title": "Part D2 & D4 — Trace CLI Rebuilding Context & Prompt + Retrieval Guardrail Stripping Prompt Injection", "path": str(ss_dir / "D2.png")},
+        {"code": "E1", "title": "Part E2 & E4 — Live Query Coverage & Drift Output (Before Expansion = 69.05% vs. After Adding 8 Golden Questions = 100.00%)", "path": str(ss_dir / "E1.png")},
+        {"code": "F1", "title": "Part F1 — Kubernetes Cluster Resources (`kubectl get pods,svc,jobs,cronjobs,pvc,cm -n rahbar`)", "path": str(ss_dir / "F1.png")},
+        {"code": "F2", "title": "Part F2 — Completed Kubernetes Ingestion Job Logs (`kubectl logs job/ragops-ingest -n rahbar`)", "path": str(ss_dir / "F2.png")},
+        {"code": "F3", "title": "Part F2 — Completed Kubernetes Evaluation & Release Gate Job Logs (`kubectl logs job/eval-gate -n rahbar`)", "path": str(ss_dir / "F3.png")},
+        {"code": "F4", "title": "Part F2 — Release Gate Result Changing to FAIL After Editing `ConfigMap` Threshold Without Image Rebuild", "path": str(ss_dir / "F4.png")},
+    ]
+    return [i for i in items if Path(i["path"]).exists()]
+
+
 def build_html() -> str:
-    screenshots = generate_all_screenshots()
+    screenshots = get_user_screenshots()
 
     appendix_pages_html: list[str] = []
     for idx, item in enumerate(screenshots, start=1):
